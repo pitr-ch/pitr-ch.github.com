@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://pitr-ch.github.io/sitemap.xml 
+Sitemap: http://blog.pitr.ch/sitemap.xml 

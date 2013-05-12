@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://pitr-ch.github.io/atom.xml" rel="self"/>
-  <link href="http://pitr-ch.github.io/"/>
-  <updated>2013-05-12T11:59:54+02:00</updated>
-  <id>http://pitr-ch.github.io/</id>
+  <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
+  <link href="http://blog.pitr.ch/"/>
+  <updated>2013-05-12T12:47:56+02:00</updated>
+  <id>http://blog.pitr.ch/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Petr Chalupa]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
