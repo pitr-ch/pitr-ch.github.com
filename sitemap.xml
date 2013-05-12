@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://blog.pitr.ch/about-me/</loc>
+        <lastmod>2013-05-12T13:35:43+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://blog.pitr.ch/blog/archives/</loc>
         <lastmod>2013-05-12T11:56:39+02:00</lastmod>
     </url>
@@ -10,7 +14,7 @@
     </url>
     <url>
         <loc>http://blog.pitr.ch/</loc>
-        <lastmod>2013-05-12T12:59:01+02:00</lastmod>
+        <lastmod>2013-05-12T13:27:07+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/robots.txt</loc>
