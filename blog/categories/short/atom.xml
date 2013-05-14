@@ -4,7 +4,7 @@
   <title><![CDATA[Category: short | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/short/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-14T22:05:45+02:00</updated>
+  <updated>2013-05-14T22:20:34+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -19,7 +19,7 @@
     <updated>2013-05-14T21:19:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
-It&rsquo;s not that powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
+It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
 
 <!-- more -->
 
