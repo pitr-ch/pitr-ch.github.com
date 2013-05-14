@@ -1,24 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Pitr.ch]]></title>
-  <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
-  <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-14T22:05:45+02:00</updated>
-  <id>http://blog.pitr.ch/</id>
-  <author>
-    <name><![CDATA[Petr Chalupa]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Algebrick - Algebraic types and pattern matching for Ruby - Pitr.ch</title>
+  <meta name="author" content="Petr Chalupa">
 
   
-  <entry>
-    <title type="html"><![CDATA[Algebrick - Algebraic types and pattern matching for Ruby]]></title>
-    <link href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/"/>
-    <updated>2013-05-14T21:19:00+02:00</updated>
-    <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
+  <meta name="description" content="I&rsquo;ve just released a new gem algebrick which brings Algebraic types and pattern matching to Ruby.
+It&rsquo;s not that powerfull as Haskell& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4005004-8']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Pitr.ch</a></h1>
+  
+    <h2>... my random post generator ...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.pitr.ch" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/gems/">Gems</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-me">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Algebrick - Algebraic Types and Pattern Matching for Ruby</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-14T21:19:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
 It&rsquo;s not that powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
 
 <!-- more -->
@@ -112,37 +205,141 @@ It&rsquo;s not that powerfull as Haskell&rsquo;s but it can still be quite usefu
 
 
 <p>Please leave a comment if you have questions.</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Praise - pry session for every exception]]></title>
-    <link href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/"/>
-    <updated>2013-05-14T15:09:00+02:00</updated>
-    <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
-A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
 
-<!-- more -->
+<span class="byline author vcard">Posted by <span class="fn">Petr Chalupa</span></span>
+
+      
 
 
-<h2>Difference between <code>praise</code> and <code>pry-rescue</code></h2>
-
-<p><code>praise</code> allows a developer to investigate all exceptions including the ones rescued later.
-<code>pry-rescue</code> on the other hand will work only for exceptions which are un-handled by the process.
-Typical use-case is e.g. a worker, which is rescuing all exceptions. <code>pry-rescue</code> cannot help with
-investigation of these exceptions.</p>
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>Documentation: <a href="http://blog.pitr.ch/praise">http://blog.pitr.ch/praise</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/praise">https://github.com/pitr-ch/praise</a></li>
-</ul>
 
 
-<p>Please leave a comment if you have questions.</p>
-]]></content>
-  </entry>
+
+
+
+
   
-</feed>
+
+
+<time datetime="2013-05-14T21:19:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/algebrick/'>algebrick</a>, <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/short/'>short</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/14/praise-pry-session-for-every-exception/" title="Previous Post: Praise - pry session for every exception">&laquo; Praise - pry session for every exception</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/">Algebrick - Algebraic Types and Pattern Matching for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - Pry Session for Every Exception</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+    <h1>Categories</h1>
+    <p><a href='/blog/categories/gem/'>gem (2)</a>, <a href='/blog/categories/short/'>short (2)</a>, <a href='/blog/categories/praise/'>praise (1)</a>, <a href='/blog/categories/algebrick/'>algebrick (1)</a></p>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Petr Chalupa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'pitr-ch';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/';
+        var disqus_url = 'http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

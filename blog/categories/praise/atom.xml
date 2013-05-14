@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: praise | Pitr.ch]]></title>
+  <link href="http://blog.pitr.ch/blog/categories/praise/atom.xml" rel="self"/>
+  <link href="http://blog.pitr.ch/"/>
+  <updated>2013-05-14T22:05:45+02:00</updated>
+  <id>http://blog.pitr.ch/</id>
+  <author>
+    <name><![CDATA[Petr Chalupa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Praise - pry session for every exception]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/"/>
+    <updated>2013-05-14T15:09:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
+A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
+
+<!-- more -->
+
+
+<h2>Difference between <code>praise</code> and <code>pry-rescue</code></h2>
+
+<p><code>praise</code> allows a developer to investigate all exceptions including the ones rescued later.
+<code>pry-rescue</code> on the other hand will work only for exceptions which are un-handled by the process.
+Typical use-case is e.g. a worker, which is rescuing all exceptions. <code>pry-rescue</code> cannot help with
+investigation of these exceptions.</p>
+
+<h2>Do you wish to know more?</h2>
+
+<ul>
+<li>Documentation: <a href="http://blog.pitr.ch/praise">http://blog.pitr.ch/praise</a></li>
+<li>Source: <a href="https://github.com/pitr-ch/praise">https://github.com/pitr-ch/praise</a></li>
+</ul>
+
+
+<p>Please leave a comment if you have questions.</p>
+]]></content>
+  </entry>
+  
+</feed>

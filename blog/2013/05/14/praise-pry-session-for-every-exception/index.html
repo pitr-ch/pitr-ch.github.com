@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sadly still empty :,( - Pitr.ch</title>
+  <title>Praise - pry session for every exception - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Hopefully not for long &hellip;
-">
+  <meta name="description" content="I&rsquo;ve just released a new gem praise (pry + raise = praise).
+A small gem for intercepting raise calls to dig up hidden and buried exceptions. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/05/12/sadly-still-empty">
+  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -51,7 +51,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Pitr.ch</a></h1>
   
-    <h2>... my random rambling hideout ...</h2>
+    <h2>... my random post generator ...</h2>
   
 </hgroup>
 
@@ -69,8 +69,8 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Gems</a></li>
-  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/gems/">Gems</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about-me">About Me</a></li>
 </ul>
@@ -83,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">Sadly Still Empty :,(</h1>
+      <h1 class="entry-title">Praise - Pry Session for Every Exception</h1>
     
     
       <p class="meta">
@@ -99,7 +99,7 @@
   
 
 
-<time datetime="2013-05-12T13:58:00+02:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
+<time datetime="2013-05-14T15:09:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -111,7 +111,28 @@
   </header>
 
 
-<div class="entry-content"><p>Hopefully not for long &hellip;</p>
+<div class="entry-content"><p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
+A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
+
+<!-- more -->
+
+
+<h2>Difference between <code>praise</code> and <code>pry-rescue</code></h2>
+
+<p><code>praise</code> allows a developer to investigate all exceptions including the ones rescued later.
+<code>pry-rescue</code> on the other hand will work only for exceptions which are un-handled by the process.
+Typical use-case is e.g. a worker, which is rescuing all exceptions. <code>pry-rescue</code> cannot help with
+investigation of these exceptions.</p>
+
+<h2>Do you wish to know more?</h2>
+
+<ul>
+<li>Documentation: <a href="http://blog.pitr.ch/praise">http://blog.pitr.ch/praise</a></li>
+<li>Source: <a href="https://github.com/pitr-ch/praise">https://github.com/pitr-ch/praise</a></li>
+</ul>
+
+
+<p>Please leave a comment if you have questions.</p>
 </div>
 
 
@@ -134,12 +155,12 @@
   
 
 
-<time datetime="2013-05-12T13:58:00+02:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
+<time datetime="2013-05-14T15:09:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/test-post/'>test-post</a>
+    <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/praise/'>praise</a>, <a class='category' href='/blog/categories/short/'>short</a>
   
 </span>
 
@@ -148,7 +169,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/12/sadly-still-empty/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/05/12/sadly-still-empty/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/" >Tweet</a>
   
   
   
@@ -157,6 +178,8 @@
     
     <p class="meta">
       
+      
+        <a class="basic-alignment right" href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" title="Next Post: Algebrick - Algebraic types and pattern matching for Ruby">Algebrick - Algebraic types and pattern matching for Ruby &raquo;</a>
       
     </p>
   </footer>
@@ -177,7 +200,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/12/sadly-still-empty/">Sadly Still Empty :,(</a>
+        <a href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/">Algebrick - Algebraic Types and Pattern Matching for Ruby</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - Pry Session for Every Exception</a>
       </li>
     
   </ul>
@@ -188,12 +215,7 @@
 
 <section>
     <h1>Categories</h1>
-    <p><a href='/blog/categories/test-post/'>test-post (1)</a></p>
-</section>
-
-<section>
-    <h1>Table of Content</h1>
-    <ol class="toc"></ol>
+    <p><a href='/blog/categories/gem/'>gem (2)</a>, <a href='/blog/categories/short/'>short (2)</a>, <a href='/blog/categories/praise/'>praise (1)</a>, <a href='/blog/categories/algebrick/'>algebrick (1)</a></p>
 </section>
 
 
@@ -216,8 +238,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/12/sadly-still-empty/';
-        var disqus_url = 'http://blog.pitr.ch/blog/2013/05/12/sadly-still-empty/';
+        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/';
+        var disqus_url = 'http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/';
         var disqus_script = 'embed.js';
       
     (function () {
