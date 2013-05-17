@@ -4,7 +4,7 @@
   <title><![CDATA[Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-17T15:26:28+02:00</updated>
+  <updated>2013-05-17T15:47:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -18,91 +18,19 @@
     <link href="http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/"/>
     <updated>2013-05-17T12:23:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby</id>
-    <content type="html"><![CDATA[<p>Htmless is actually not a new gem. It was renamed from a gem named hammer_builder.</p>
-
-<!-- more -->
-
-
-<h2>Quick syntax example</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Htmless</span><span class="p">:</span><span class="ss">:Formatted</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">go_in</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">html5</span>
-</span><span class='line'>  <span class="n">html</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">head</span> <span class="p">{</span> <span class="n">title</span> <span class="s1">&#39;my_page&#39;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="n">body</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">div</span><span class="o">.</span><span class="n">content!</span> <span class="k">do</span>
-</span><span class='line'>        <span class="nb">p</span><span class="o">.</span><span class="n">centered</span> <span class="s2">&quot;my page&#39;s content&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">.</span><span class="n">to_html</span>
-</span></code></pre></td></tr></table></div></figure>
+    <content type="html">
+      <![CDATA[
+      <p>Htmless is actually not a new gem. It was renamed from a gem named hammer_builder.</p>
 
 
-<p>returns</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;title&gt;</span>my_page<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;centered&quot;</span><span class="nt">&gt;</span>my page&#39;s content<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>What&rsquo;s new</h2>
-
-<p>There is not much news, only the name and it&rsquo;s no longer dependent on ActiveSupport.
-This is maintenance release.</p>
-
-<h2>For those not knowing the gem</h2>
-
-<p>Main features of Htmless are:</p>
-
-<ul>
-<li>Its as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
-<li>You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
-<li>You can write html in pure Ruby.</li>
-</ul>
-
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
-</ul>
-
-
-<p>Please leave a comment if you have questions.</p>
-]]></content>
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
   </entry>
   
   <entry>
@@ -110,57 +38,17 @@ This is maintenance release.</p>
     <link href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/"/>
     <updated>2013-05-15T11:00:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>Lets have a commit <code>E</code> which is in some unknown pull-request.
-<code>--ancestry-path</code> option can be used to list all commits between master and <code>E</code></p>
-
-<pre><code>git log --ancestry-path master ^E
-</code></pre>
-
-<p>for:</p>
-
-<pre><code>A last commit in master
-B Merge pull request #2258 ...
-|\
-C | some comiit in master
-| D onther commit in searched pull-request
-| E given commit
-</code></pre>
-
-<p>it returns:</p>
-
-<pre><code>A last commit in master
-B Merge pull request #2258 ...
-D onther commit in searched pull-request
-</code></pre>
-
-<p>If last merge commit from the list is taken we get the merge commit for <code>E</code> with searched pull-request number.
-To do that we use options:</p>
-
-<pre><code>git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^E
-</code></pre>
-
-<p>which returns only <code>B Merge pull request #2258</code> the merge commit with search pull-request number.</p>
-
-<h2>Git Alias</h2>
-
-<p>For convenience it can be turned into git alias.</p>
-
-<pre><code>logpr = !sh -c 'git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^$1 $@' -
-</code></pre>
-
-<p>Then</p>
-
-<pre><code>$ git logpr 4b6d8f9 --oneline
-d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
-</code></pre>
-
-<h2>Caution</h2>
-
-<p>This works only if all pull-requests ale merged directly into master.</p>
-]]></content>
+    <content type="html">
+      <![CDATA[
+      
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
   </entry>
   
   <entry>
@@ -168,101 +56,20 @@ d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
     <link href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/"/>
     <updated>2013-05-14T21:19:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
+    <content type="html">
+      <![CDATA[
+      <p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
 It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
 
-<!-- more -->
 
-
-
-
-<figure class='code'><figcaption><span>Quick example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># load DSL for type definition</span>
-</span><span class='line'><span class="kp">extend</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:DSL</span>                              <span class="c1"># =&gt; main</span>
-</span><span class='line'><span class="c1"># define a Maybe type, which has two possible values:</span>
-</span><span class='line'><span class="c1"># None or Some caring a value of Object type</span>
-</span><span class='line'><span class="n">type_def</span> <span class="p">{</span> <span class="n">maybe</span> <span class="o">===</span> <span class="n">none</span> <span class="o">|</span> <span class="n">some</span><span class="p">(</span><span class="no">Object</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'><span class="c1"># =&gt; [Maybe(None | Some), None, Some(Object)]</span>
-</span><span class='line'><span class="c1"># Maybe, None and Some are now defined</span>
-</span><span class='line'><span class="o">[</span><span class="no">Maybe</span><span class="p">,</span> <span class="no">None</span><span class="p">,</span> <span class="no">Some</span><span class="o">]</span>
-</span><span class='line'><span class="c1"># =&gt; [Maybe(None | Some), None, Some(Object)]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># access #match and #any methods for pattern matching</span>
-</span><span class='line'><span class="kp">extend</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:Matching</span>                         <span class="c1"># =&gt; main</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">match</span> <span class="no">None</span><span class="p">,</span>
-</span><span class='line'>      <span class="no">None</span> <span class="o">&gt;&gt;</span> <span class="kp">nil</span><span class="p">,</span>
-</span><span class='line'>      <span class="c1"># ~ will match value of Some and pass it to the block</span>
-</span><span class='line'>      <span class="no">Some</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span> <span class="p">{</span> <span class="n">value</span> <span class="p">}</span>              <span class="c1"># =&gt; nil</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">match</span> <span class="no">Some</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>      <span class="no">None</span> <span class="o">&gt;&gt;</span> <span class="kp">nil</span><span class="p">,</span>
-</span><span class='line'>      <span class="no">Some</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span> <span class="p">{</span> <span class="n">value</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>            <span class="c1"># =&gt; 2</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># lets add some method to the Maybe type</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">Maybe</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">maybe</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">case</span> <span class="nb">self</span>
-</span><span class='line'>    <span class="k">when</span> <span class="no">None</span>
-</span><span class='line'>    <span class="k">when</span> <span class="no">Some</span>
-</span><span class='line'>      <span class="n">block</span><span class="o">.</span><span class="n">call</span> <span class="n">value</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>                                                <span class="c1"># =&gt; nil</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># #maybe method is now defined on both None and Some</span>
-</span><span class='line'><span class="no">None</span><span class="o">.</span><span class="n">maybe</span> <span class="p">{</span> <span class="o">|</span><span class="n">_</span><span class="o">|</span> <span class="k">raise</span> <span class="s1">&#39;never ever happens&#39;</span> <span class="p">}</span>      <span class="c1"># =&gt; nil</span>
-</span><span class='line'><span class="c1"># block is called with the value</span>
-</span><span class='line'><span class="no">Some</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">maybe</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>                          <span class="c1"># =&gt; 2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
-</ul>
-
-
-<p>Please leave a comment if you have questions.</p>
-]]></content>
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
   </entry>
   
   <entry>
@@ -270,29 +77,20 @@ It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful.
     <link href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/"/>
     <updated>2013-05-14T15:09:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
+    <content type="html">
+      <![CDATA[
+      <p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
 A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
 
-<!-- more -->
 
-
-<h2>Difference between <code>praise</code> and <code>pry-rescue</code></h2>
-
-<p><code>praise</code> allows a developer to investigate all exceptions including the ones rescued later.
-<code>pry-rescue</code> on the other hand will work only for exceptions which are un-handled by the process.
-Typical use-case is e.g. a worker, which is rescuing all exceptions. <code>pry-rescue</code> cannot help with
-investigation of these exceptions.</p>
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>Documentation: <a href="http://blog.pitr.ch/praise">http://blog.pitr.ch/praise</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/praise">https://github.com/pitr-ch/praise</a></li>
-</ul>
-
-
-<p>Please leave a comment if you have questions.</p>
-]]></content>
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
   </entry>
   
 </feed>
