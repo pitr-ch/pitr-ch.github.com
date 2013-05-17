@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: praise - Pitr.ch</title>
+  <title>How to find pull-request by a commit sha - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Category: praise">
+  <meta name="description" content="Lets have a commit E which is in some unknown pull-request.
+--ancestry-path option can be used to list all commits between master and E git log -- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.chblog/categories/praise">
+  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -78,36 +79,147 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Praise</h1>
+    
+      <h1 class="entry-title">How to Find Pull-request by a Commit Sha</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-15T11:00:00+02:00" pubdate data-updated="true">May 15<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - pry session for every exception</a></h1>
-<time datetime="2013-05-14T15:09:00+02:00" pubdate><span class='month'>May</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/praise/'>praise</a></span>
-</footer>
+<div class="entry-content"><!-- more -->
 
 
-</article>
+<p>Lets have a commit <code>E</code> which is in some unknown pull-request.
+<code>--ancestry-path</code> option can be used to list all commits between master and <code>E</code></p>
 
+<pre><code>git log --ancestry-path master ^E
+</code></pre>
+
+<p>for:</p>
+
+<pre><code>A last commit in master
+B Merge pull request #2258 ...
+|\
+C | some comiit in master
+| D onther commit in searched pull-request
+| E given commit
+</code></pre>
+
+<p>it returns:</p>
+
+<pre><code>A last commit in master
+B Merge pull request #2258 ...
+D onther commit in searched pull-request
+</code></pre>
+
+<p>If last merge commit from the list is taken we get the merge commit for <code>E</code> with searched pull-request number.
+To do that we use options:</p>
+
+<pre><code>git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^E
+</code></pre>
+
+<p>which returns only <code>B Merge pull request #2258</code> the merge commit with search pull-request number.</p>
+
+<h2>Git Alias</h2>
+
+<p>For convenience it can be turned into git alias.</p>
+
+<pre><code>logpr = !sh -c 'git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^$1 $@' -
+</code></pre>
+
+<p>Then</p>
+
+<pre><code>$ git logpr 4b6d8f9 --oneline
+d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
+</code></pre>
+
+<h2>Caution</h2>
+
+<p>This works only if all pull-requests ale merged directly into master.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Petr Chalupa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-15T11:00:00+02:00" pubdate data-updated="true">May 15<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" title="Previous Post: Algebrick - Algebraic types and pattern matching for Ruby">&laquo; Algebrick - Algebraic types and pattern matching for Ruby</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/" title="Next Post: Htmless - Fast extensible html5 builder in pure Ruby">Htmless - Fast extensible html5 builder in pure Ruby &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -164,7 +276,10 @@
       var disqus_shortname = 'pitr-ch';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/';
+        var disqus_url = 'http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | Pitr.ch]]></title>
+  <link href="http://blog.pitr.ch/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://blog.pitr.ch/"/>
+  <updated>2013-05-17T15:26:28+02:00</updated>
+  <id>http://blog.pitr.ch/</id>
+  <author>
+    <name><![CDATA[Petr Chalupa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to find pull-request by a commit sha]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/"/>
+    <updated>2013-05-15T11:00:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>Lets have a commit <code>E</code> which is in some unknown pull-request.
+<code>--ancestry-path</code> option can be used to list all commits between master and <code>E</code></p>
+
+<pre><code>git log --ancestry-path master ^E
+</code></pre>
+
+<p>for:</p>
+
+<pre><code>A last commit in master
+B Merge pull request #2258 ...
+|\
+C | some comiit in master
+| D onther commit in searched pull-request
+| E given commit
+</code></pre>
+
+<p>it returns:</p>
+
+<pre><code>A last commit in master
+B Merge pull request #2258 ...
+D onther commit in searched pull-request
+</code></pre>
+
+<p>If last merge commit from the list is taken we get the merge commit for <code>E</code> with searched pull-request number.
+To do that we use options:</p>
+
+<pre><code>git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^E
+</code></pre>
+
+<p>which returns only <code>B Merge pull request #2258</code> the merge commit with search pull-request number.</p>
+
+<h2>Git Alias</h2>
+
+<p>For convenience it can be turned into git alias.</p>
+
+<pre><code>logpr = !sh -c 'git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^$1 $@' -
+</code></pre>
+
+<p>Then</p>
+
+<pre><code>$ git logpr 4b6d8f9 --oneline
+d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
+</code></pre>
+
+<h2>Caution</h2>
+
+<p>This works only if all pull-requests ale merged directly into master.</p>
+]]></content>
+  </entry>
+  
+</feed>

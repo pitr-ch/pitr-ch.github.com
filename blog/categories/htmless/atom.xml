@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: htmless | Pitr.ch]]></title>
+  <link href="http://blog.pitr.ch/blog/categories/htmless/atom.xml" rel="self"/>
+  <link href="http://blog.pitr.ch/"/>
+  <updated>2013-05-17T15:26:28+02:00</updated>
+  <id>http://blog.pitr.ch/</id>
+  <author>
+    <name><![CDATA[Petr Chalupa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Htmless - Fast extensible html5 builder in pure Ruby]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/"/>
+    <updated>2013-05-17T12:23:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby</id>
+    <content type="html"><![CDATA[<p>Htmless is actually not a new gem. It was renamed from a gem named hammer_builder.</p>
+
+<!-- more -->
+
+
+<h2>Quick syntax example</h2>
+
+<p>``` ruby
+Htmless::Formatted.new.go_in do
+  html5
+  html do</p>
+
+<pre><code>head { title 'my_page' }
+body do
+  div.content! do
+    p.centered "my page's content"
+  end
+end
+</code></pre>
+
+<p>  end
+end.to_html
+```</p>
+
+<p>returns</p>
+
+<p>``` html
+&lt;!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head></p>
+
+<pre><code>&lt;title&gt;my_page&lt;/title&gt;
+</code></pre>
+
+<p>  </head>
+  <body></p>
+
+<pre><code>&lt;div id="content"&gt;
+  &lt;p class="centered"&gt;my page's content&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>  </body>
+</html>
+```</p>
+
+<h2>What&rsquo;s new</h2>
+
+<p>There is not much news, only the name and it&rsquo;s no longer dependent on ActiveSupport.
+This is maintenance release.</p>
+
+<h2>For those not knowing the gem</h2>
+
+<p>Main features of Htmless are:</p>
+
+<ul>
+<li>Its as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
+<li>You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
+<li>You can write html in pure Ruby.</li>
+</ul>
+
+
+<h2>Do you wish to know more?</h2>
+
+<ul>
+<li>Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
+<li>Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+</ul>
+
+
+<p>Please leave a comment if you have questions.</p>
+]]></content>
+  </entry>
+  
+</feed>

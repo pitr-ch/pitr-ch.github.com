@@ -4,7 +4,7 @@
   <title><![CDATA[Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-14T22:20:34+02:00</updated>
+  <updated>2013-05-17T15:26:28+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Htmless - Fast extensible html5 builder in pure Ruby]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/"/>
+    <updated>2013-05-17T12:23:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby</id>
+    <content type="html"><![CDATA[<p>Htmless is actually not a new gem. It was renamed from a gem named hammer_builder.</p>
+
+<!-- more -->
+
+
+<h2>Quick syntax example</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Htmless</span><span class="p">:</span><span class="ss">:Formatted</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">go_in</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">html5</span>
+</span><span class='line'>  <span class="n">html</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">head</span> <span class="p">{</span> <span class="n">title</span> <span class="s1">&#39;my_page&#39;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">body</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">div</span><span class="o">.</span><span class="n">content!</span> <span class="k">do</span>
+</span><span class='line'>        <span class="nb">p</span><span class="o">.</span><span class="n">centered</span> <span class="s2">&quot;my page&#39;s content&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">.</span><span class="n">to_html</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>returns</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;title&gt;</span>my_page<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;centered&quot;</span><span class="nt">&gt;</span>my page&#39;s content<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What&rsquo;s new</h2>
+
+<p>There is not much news, only the name and it&rsquo;s no longer dependent on ActiveSupport.
+This is maintenance release.</p>
+
+<h2>For those not knowing the gem</h2>
+
+<p>Main features of Htmless are:</p>
+
+<ul>
+<li>Its as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
+<li>You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
+<li>You can write html in pure Ruby.</li>
+</ul>
+
+
+<h2>Do you wish to know more?</h2>
+
+<ul>
+<li>Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
+<li>Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+</ul>
+
+
+<p>Please leave a comment if you have questions.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to find pull-request by a commit sha]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/"/>
+    <updated>2013-05-15T11:00:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>Lets have a commit <code>E</code> which is in some unknown pull-request.
+<code>--ancestry-path</code> option can be used to list all commits between master and <code>E</code></p>
+
+<pre><code>git log --ancestry-path master ^E
+</code></pre>
+
+<p>for:</p>
+
+<pre><code>A last commit in master
+B Merge pull request #2258 ...
+|\
+C | some comiit in master
+| D onther commit in searched pull-request
+| E given commit
+</code></pre>
+
+<p>it returns:</p>
+
+<pre><code>A last commit in master
+B Merge pull request #2258 ...
+D onther commit in searched pull-request
+</code></pre>
+
+<p>If last merge commit from the list is taken we get the merge commit for <code>E</code> with searched pull-request number.
+To do that we use options:</p>
+
+<pre><code>git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^E
+</code></pre>
+
+<p>which returns only <code>B Merge pull request #2258</code> the merge commit with search pull-request number.</p>
+
+<h2>Git Alias</h2>
+
+<p>For convenience it can be turned into git alias.</p>
+
+<pre><code>logpr = !sh -c 'git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^$1 $@' -
+</code></pre>
+
+<p>Then</p>
+
+<pre><code>$ git logpr 4b6d8f9 --oneline
+d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
+</code></pre>
+
+<h2>Caution</h2>
+
+<p>This works only if all pull-requests ale merged directly into master.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Algebrick - Algebraic types and pattern matching for Ruby]]></title>
