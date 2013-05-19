@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gem | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-17T15:47:31+02:00</updated>
+  <updated>2013-05-19T17:22:51+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -74,7 +74,7 @@ This is maintenance release.</p>
 <p>Main features of Htmless are:</p>
 
 <ul>
-<li>Its as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
+<li>It&rsquo;s as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
 <li>You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
 <li>You can write html in pure Ruby.</li>
 </ul>
