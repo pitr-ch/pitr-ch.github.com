@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gem | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-19T17:22:51+02:00</updated>
+  <updated>2013-06-01T19:17:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,200 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Justified - add missing causes to exceptions]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/"/>
+    <updated>2013-06-01T19:52:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions</id>
+    <content type="html"><![CDATA[<p>I&#39;ve just published a new gem called <code>justified</code> which is adding missing causes to Ruby exceptions.
+When exception is risen because of another it is stored in the new one and backtrace is appended with  </p>
+<div class="highlight"><pre><code class="text">from caused by: (AnError) an ugly bug
+from justified.rb:83:in `bad_code&#39;
+from     ... skipped 4 lines
+</code></pre></div>
+<!-- more -->
+
+<h2>Example</h2>
+
+<p>Let&#39;s have following snippet:</p>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">AnError</span> <span class="o">&lt;</span> <span class="no">StadardError</span><span class="p">;</span> <span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">bad_code</span>
+  <span class="k">raise</span> <span class="no">AnError</span><span class="p">,</span> <span class="s1">&#39;an ugly bug&#39;</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">handle_error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+  <span class="k">raise</span> <span class="no">AnError</span><span class="p">,</span> <span class="s1">&#39;something went wrong&#39;</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">do_something</span>
+  <span class="n">bad_code</span>
+<span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">error</span>
+  <span class="n">handle_error</span> <span class="n">error</span>
+<span class="k">end</span>
+
+<span class="n">do_something</span>
+</code></pre></div>
+<p>When called it will produce:</p>
+<div class="highlight"><pre><code class="text">justified.rb:93:in `handle_error&#39;: something went wrong (AnError)
+    from justified.rb:89:in `rescue in do_something&#39;
+    from justified.rb:87:in `do_something&#39;
+    from justified.rb:96:in `&lt;top (required)&gt;&#39;
+    from -e:1:in `load&#39;
+    from -e:1:in `&lt;main&gt;&#39;
+</code></pre></div>
+<p>The real problem <code>an ugly bug</code> is <strong>hidden</strong>. What will happen when <code>justified</code> is used?</p>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;justified/stadard_error&#39;</span>
+
+<span class="c1"># ... rest of the snipper</span>
+</code></pre></div>
+<p>It will produce:</p>
+<div class="highlight"><pre><code class="text">justified.rb:93:in `handle_error&#39;: something went wrong (AnError)
+    from justified.rb:89:in `rescue in do_something&#39;
+    from justified.rb:87:in `do_something&#39;
+    from justified.rb:96:in `&lt;top (required)&gt;&#39;
+    from -e:1:in `load&#39;
+    from -e:1:in `&lt;main&gt;&#39;
+    from caused by: (AnError) an ugly bug
+    from justified.rb:83:in `bad_code&#39;
+    from     ... skipped 4 lines
+</code></pre></div>
+<p>Of course causes can be concatenated. </p>
+
+<h2>Usage</h2>
+
+<ul>
+<li>  <code>require &#39;justified&#39;</code> to include <code>Justified::Error</code> to any exception you need manually</li>
+<li>  <code>require &#39;justified/standard_error&#39;</code> to have causes in all exceptions which are kind of <code>StandardError</code></li>
+</ul>
+
+<h3>Behavior</h3>
+
+<p>When an exception is risen inside rescue block a cause is automatically recorded.</p>
+<div class="highlight"><pre><code class="ruby"><span class="n">e</span> <span class="o">=</span> <span class="k">begin</span>
+      <span class="k">raise</span> <span class="s1">&#39;bug&#39;</span>
+    <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">error</span>
+      <span class="k">raise</span> <span class="s1">&#39;this does not work&#39;</span>
+    <span class="k">end</span> <span class="k">rescue</span> <span class="vg">$!</span>
+<span class="n">e</span><span class="o">.</span><span class="n">cause</span><span class="o">.</span><span class="n">message</span> <span class="o">==</span> <span class="s1">&#39;bug&#39;</span> <span class="c1"># =&gt; true</span>
+</code></pre></div>
+<p>Cause can be set explicitly.</p>
+<div class="highlight"><pre><code class="ruby"><span class="n">e</span> <span class="o">=</span> <span class="k">begin</span>
+      <span class="k">raise</span> <span class="s1">&#39;bug&#39;</span>
+    <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">error</span>
+      <span class="k">raise</span> <span class="no">StandardError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;this does not work&#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+    <span class="k">end</span> <span class="k">rescue</span> <span class="vg">$!</span>
+<span class="n">e</span><span class="o">.</span><span class="n">cause</span><span class="o">.</span><span class="n">message</span> <span class="o">==</span> <span class="s1">&#39;bug&#39;</span> <span class="c1"># =&gt; true</span>
+</code></pre></div>
+<p>Or if signature of <code>.new</code> is changed cause can be set with a setter <code>#cause=</code></p>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">InspectingError</span> <span class="o">&lt;</span> <span class="no">StandardError</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+    <span class="k">super</span> <span class="n">object</span><span class="o">.</span><span class="n">inspect</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">e</span> <span class="o">=</span> <span class="k">begin</span>
+      <span class="k">raise</span> <span class="s1">&#39;bug&#39;</span>
+    <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">error</span>
+      <span class="k">raise</span> <span class="no">InspectingError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tap</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">cause</span> <span class="o">=</span> <span class="n">error</span> <span class="p">}</span>
+    <span class="k">end</span> <span class="k">rescue</span> <span class="vg">$!</span>
+<span class="n">e</span><span class="o">.</span><span class="n">cause</span><span class="o">.</span><span class="n">message</span> <span class="o">==</span> <span class="s1">&#39;bug&#39;</span> <span class="c1"># =&gt; true</span>
+</code></pre></div>
+<p>and</p>
+<div class="highlight"><pre><code class="ruby"><span class="n">e</span> <span class="o">=</span> <span class="k">begin</span>
+      <span class="k">raise</span> <span class="s1">&#39;bug&#39;</span>
+    <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">error</span>
+      <span class="k">raise</span> <span class="no">InspectingError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">a</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="k">end</span> <span class="k">rescue</span> <span class="vg">$!</span>
+<span class="n">e</span><span class="o">.</span><span class="n">cause</span><span class="o">.</span><span class="n">message</span> <span class="o">==</span> <span class="s1">&#39;bug&#39;</span> <span class="c1"># =&gt; true</span>
+</code></pre></div>
+<p>will work as well.</p>
+
+<h2>Do you wish to know more?</h2>
+
+<ul>
+<li>  Documentation: <a href="http://blog.pitr.ch/justified">http://blog.pitr.ch/justified</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/justified">https://github.com/pitr-ch/justified</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/justified/">http://blog.pitr.ch/blog/categories/justified/</a></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Praise - bump to version 0.0.3]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/"/>
+    <updated>2013-06-01T19:05:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<h2>Enabling and Disabling</h2>
+
+<p>Method <code>#enable=</code> has been given to <code>praise</code> in this version. Use <code>praise.enable = true</code> to install its hook to <code>Kernel</code> 
+and <code>praise.enable = false</code> to uninstall it.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Praise</span> <span class="o">=</span> <span class="no">PraiseImpl</span><span class="o">.</span><span class="n">new</span><span class="p">(</span>
+    <span class="s1">&#39;path_to_ignore_file.yml&#39;</span><span class="p">,</span> 
+    <span class="kp">false</span><span class="p">)</span> <span class="c1"># to instantiate it disabled</span>
+<span class="no">Praise</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kp">true</span>   
+</code></pre></div>]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.2]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<h2>Call <code>#type_def</code> directly</h2>
+
+<p><code>Algebraic::DSL</code> module does not have to be extended into your module to access <code>#type_def</code> any more.
+It can be now called directly with passing the base module to define the new types.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span> <span class="nb">self</span> <span class="k">do</span>
+  <span class="n">boolean</span> <span class="o">===</span> <span class="no">TrueClass</span> <span class="o">|</span> <span class="no">FalseClass</span>
+<span class="k">end</span>
+</code></pre></div>
+<h2>Wrong field</h2>
+
+<p>When wrong field is accessed it will now raise an <code>ArgummentError</code> instead of silently returning <code>nil</code></p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">tree</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="nb">Integer</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">][</span><span class="ss">:middle</span><span class="o">]</span> <span class="k">rescue</span> <span class="vg">$!</span> 
+<span class="c1"># =&gt; #&lt;ArgumentError: uknown field :middle&gt;</span>
+</code></pre></div>
+<h2>Access fields by method</h2>
+
+<p>Call <code>#add_all_field_method_accessors</code> on a product type to get access to fields by methods.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Tree</span><span class="o">.</span><span class="n">add_all_field_method_accessors</span>
+<span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">left</span>   <span class="c1"># =&gt; Empty</span>
+</code></pre></div>
+<p>There are also methods <code>add_field_method_accessor</code> and <code>add_field_method_accessors</code> to add accessor/s selectively.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.1]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<h2>Method <code>#+</code> is deprecated</h2>
+<div class="highlight"><pre><code class="ruby"><span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">+-&gt;</span> <span class="n">v</span> <span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+</code></pre></div>
+<p><code>#-</code>, <code>#&gt;&gt;</code> and <code>#case</code> should be used instead</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">v</span> <span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+<span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">&gt;&gt;-&gt;</span> <span class="n">v</span> <span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+<span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span><span class="o">.</span><span class="n">case</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+</code></pre></div>
+<h2>Delegation from Types</h2>
+
+<p><code>#-</code>, <code>#&gt;&gt;</code> and <code>#case</code> are now delegated from types, it simplifies calls on atom types</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">None</span><span class="o">.</span><span class="n">to_m</span> <span class="o">&gt;&gt;</span> <span class="kp">nil</span> <span class="c1"># to_m can be omitted</span>
+<span class="no">None</span> <span class="o">&gt;&gt;</span> <span class="kp">nil</span>        
+</code></pre></div>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Htmless - Fast extensible html5 builder in pure Ruby]]></title>
@@ -22,51 +216,35 @@
 
 <!-- more -->
 
-
 <h2>Quick syntax example</h2>
-
-<p>``` ruby
-Htmless::Formatted.new.go_in do
-  html5
-  html do</p>
-
-<pre><code>head { title 'my_page' }
-body do
-  div.content! do
-    p.centered "my page's content"
-  end
-end
-</code></pre>
-
-<p>  end
-end.to_html
-```</p>
-
+<div class="highlight"><pre><code class="ruby"><span class="ss">Htmless</span><span class="p">:</span><span class="ss">:Formatted</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">go_in</span> <span class="k">do</span>
+  <span class="n">html5</span>
+  <span class="n">html</span> <span class="k">do</span>
+    <span class="n">head</span> <span class="p">{</span> <span class="n">title</span> <span class="s1">&#39;my_page&#39;</span> <span class="p">}</span>
+    <span class="n">body</span> <span class="k">do</span>
+      <span class="n">div</span><span class="o">.</span><span class="n">content!</span> <span class="k">do</span>
+        <span class="nb">p</span><span class="o">.</span><span class="n">centered</span> <span class="s2">&quot;my page&#39;s content&quot;</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span><span class="o">.</span><span class="n">to_html</span>
+</code></pre></div>
 <p>returns</p>
+<div class="highlight"><pre><code class="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>my_page<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;centered&quot;</span><span class="nt">&gt;</span>my page&#39;s content<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<h2>What&#39;s new</h2>
 
-<p>``` html
-&lt;!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head></p>
-
-<pre><code>&lt;title&gt;my_page&lt;/title&gt;
-</code></pre>
-
-<p>  </head>
-  <body></p>
-
-<pre><code>&lt;div id="content"&gt;
-  &lt;p class="centered"&gt;my page's content&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>  </body>
-</html>
-```</p>
-
-<h2>What&rsquo;s new</h2>
-
-<p>There is not much news, only the name and it&rsquo;s no longer dependent on ActiveSupport.
+<p>There is not much news, only the name and it&#39;s no longer dependent on ActiveSupport. 
 This is maintenance release.</p>
 
 <h2>For those not knowing the gem</h2>
@@ -74,135 +252,18 @@ This is maintenance release.</p>
 <p>Main features of Htmless are:</p>
 
 <ul>
-<li>It&rsquo;s as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
-<li>You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
-<li>You can write html in pure Ruby.</li>
+<li>  It&#39;s as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
+<li>  You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
+<li>  You can write html in pure Ruby. </li>
 </ul>
-
 
 <h2>Do you wish to know more?</h2>
 
 <ul>
-<li>Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+<li>  Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/htmless/">http://blog.pitr.ch/blog/categories/htmless/</a></li>
 </ul>
-
-
-<p>Please leave a comment if you have questions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Algebrick - Algebraic types and pattern matching for Ruby]]></title>
-    <link href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/"/>
-    <updated>2013-05-14T21:19:00+02:00</updated>
-    <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
-It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
-
-<!-- more -->
-
-
-<p>``` ruby Quick example</p>
-
-<h1>load DSL for type definition</h1>
-
-<p>extend Algebrick::DSL                              # => main</p>
-
-<h1>define a Maybe type, which has two possible values:</h1>
-
-<h1>None or Some caring a value of Object type</h1>
-
-<p>type_def { maybe === none | some(Object) }</p>
-
-<h1>=> [Maybe(None | Some), None, Some(Object)]</h1>
-
-<h1>Maybe, None and Some are now defined</h1>
-
-<p>[Maybe, None, Some]</p>
-
-<h1>=> [Maybe(None | Some), None, Some(Object)]</h1>
-
-<h1>access #match and #any methods for pattern matching</h1>
-
-<p>extend Algebrick::Matching                         # => main</p>
-
-<p>match None,</p>
-
-<pre><code>  None &gt;&gt; nil,
-  # ~ will match value of Some and pass it to the block
-  Some.(~any) --&gt; value { value }              # =&gt; nil
-</code></pre>
-
-<p>match Some[1],</p>
-
-<pre><code>  None &gt;&gt; nil,
-  Some.(~any) --&gt; value { value*2 }            # =&gt; 2
-</code></pre>
-
-<h1>lets add some method to the Maybe type</h1>
-
-<p>module Maybe
-  def maybe(&amp;block)</p>
-
-<pre><code>case self
-when None
-when Some
-  block.call value
-end
-</code></pre>
-
-<p>  end
-end                                                # => nil</p>
-
-<h1>#maybe method is now defined on both None and Some</h1>
-
-<p>None.maybe { |_| raise &lsquo;never ever happens&rsquo; }      # => nil</p>
-
-<h1>block is called with the value</h1>
-
-<p>Some[1].maybe { |v| v*2 }                          # => 2
-```</p>
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
-</ul>
-
-
-<p>Please leave a comment if you have questions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Praise - pry session for every exception]]></title>
-    <link href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/"/>
-    <updated>2013-05-14T15:09:00+02:00</updated>
-    <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
-A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
-
-<!-- more -->
-
-
-<h2>Difference between <code>praise</code> and <code>pry-rescue</code></h2>
-
-<p><code>praise</code> allows a developer to investigate all exceptions including the ones rescued later.
-<code>pry-rescue</code> on the other hand will work only for exceptions which are un-handled by the process.
-Typical use-case is e.g. a worker, which is rescuing all exceptions. <code>pry-rescue</code> cannot help with
-investigation of these exceptions.</p>
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>Documentation: <a href="http://blog.pitr.ch/praise">http://blog.pitr.ch/praise</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/praise">https://github.com/pitr-ch/praise</a></li>
-</ul>
-
-
-<p>Please leave a comment if you have questions.</p>
 ]]></content>
   </entry>
   

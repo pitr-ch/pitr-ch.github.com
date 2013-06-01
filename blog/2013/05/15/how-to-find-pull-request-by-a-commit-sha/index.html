@@ -10,7 +10,8 @@
 
   
   <meta name="description" content="Lets have a commit E which is in some unknown pull-request.
---ancestry-path option can be used to list all commits between master and E git log -- &hellip;">
+--ancestry-path option can be used to list all commits between master and E
+git log -- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -118,54 +119,42 @@
 
 <div class="entry-content"><!-- more -->
 
-
 <p>Lets have a commit <code>E</code> which is in some unknown pull-request.
 <code>--ancestry-path</code> option can be used to list all commits between master and <code>E</code></p>
-
-<pre><code>git log --ancestry-path master ^E
-</code></pre>
-
+<div class="highlight"><pre><code class="text">git log --ancestry-path master ^E
+</code></pre></div>
 <p>for:</p>
-
-<pre><code>A last commit in master
+<div class="highlight"><pre><code class="text">A last commit in master
 B Merge pull request #2258 ...
 |\
 C | some comiit in master
 | D onther commit in searched pull-request
 | E given commit
-</code></pre>
-
+</code></pre></div>
 <p>it returns:</p>
-
-<pre><code>A last commit in master
+<div class="highlight"><pre><code class="text">A last commit in master
 B Merge pull request #2258 ...
 D onther commit in searched pull-request
-</code></pre>
-
+</code></pre></div>
 <p>If last merge commit from the list is taken we get the merge commit for <code>E</code> with searched pull-request number.
 To do that we use options:</p>
-
-<pre><code>git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^E
-</code></pre>
-
+<div class="highlight"><pre><code class="text">git log --reverse --grep=\&quot;Merge pull request\&quot; -n 1 --ancestry-path master ^E
+</code></pre></div>
 <p>which returns only <code>B Merge pull request #2258</code> the merge commit with search pull-request number.</p>
 
 <h2>Git Alias</h2>
 
 <p>For convenience it can be turned into git alias.</p>
-
-<pre><code>logpr = !sh -c 'git log --reverse --grep=\"Merge pull request\" -n 1 --ancestry-path master ^$1 $@' -
-</code></pre>
-
+<div class="highlight"><pre><code class="text">logpr = !sh -c &#39;git log --reverse --grep=\&quot;Merge pull request\&quot; -n 1 \
+    --ancestry-path master ^$1 $@&#39; -
+</code></pre></div>
 <p>Then</p>
-
-<pre><code>$ git logpr 4b6d8f9 --oneline
+<div class="highlight"><pre><code class="text">$ git logpr 4b6d8f9 --oneline
 d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
-</code></pre>
-
+</code></pre></div>
 <h2>Caution</h2>
 
-<p>This works only if all pull-requests ale merged directly into master.</p>
+<p>This works only if all pull-requests ale merged directly into master. </p>
 </div>
 
 
@@ -193,7 +182,7 @@ d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/git/'>git</a>
+    <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/how/'>how</a>
   
 </span>
 
@@ -235,19 +224,23 @@ d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/01/justified-add-missing-causes-to-exceptions/">Justified - Add Missing Causes to Exceptions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/">Praise - Bump to Version 0.0.3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/01/algebrick-bump-to-version-0-1-2/">Algebrick - Bump to Version 0.1.2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/01/algebrick-bump-to-version-0-1-1/">Algebrick - Bump to Version 0.1.1</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/">Htmless - Fast Extensible Html5 Builder in Pure Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/">How to Find Pull-request by a Commit Sha</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/">Algebrick - Algebraic Types and Pattern Matching for Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - Pry Session for Every Exception</a>
       </li>
     
   </ul>
@@ -258,7 +251,7 @@ d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
 
 <section>
     <h1>Categories</h1>
-    <p><a href='/blog/categories/gem/'>gem (3)</a>, <a href='/blog/categories/praise/'>praise (1)</a>, <a href='/blog/categories/git/'>git (1)</a>, <a href='/blog/categories/htmless/'>htmless (1)</a>, <a href='/blog/categories/algebrick/'>algebrick (1)</a></p>
+    <p><a href='/blog/categories/gem/'>gem (7)</a>, <a href='/blog/categories/algebrick/'>algebrick (3)</a>, <a href='/blog/categories/praise/'>praise (2)</a>, <a href='/blog/categories/git/'>git (1)</a>, <a href='/blog/categories/how/'>how (1)</a>, <a href='/blog/categories/htmless/'>htmless (1)</a>, <a href='/blog/categories/justified/'>justified (1)</a></p>
 </section>
 
 

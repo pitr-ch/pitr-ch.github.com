@@ -4,7 +4,7 @@
   <title><![CDATA[Category: htmless | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/htmless/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-19T17:22:51+02:00</updated>
+  <updated>2013-06-01T19:17:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -22,51 +22,35 @@
 
 <!-- more -->
 
-
 <h2>Quick syntax example</h2>
-
-<p>``` ruby
-Htmless::Formatted.new.go_in do
-  html5
-  html do</p>
-
-<pre><code>head { title 'my_page' }
-body do
-  div.content! do
-    p.centered "my page's content"
-  end
-end
-</code></pre>
-
-<p>  end
-end.to_html
-```</p>
-
+<div class="highlight"><pre><code class="ruby"><span class="ss">Htmless</span><span class="p">:</span><span class="ss">:Formatted</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">go_in</span> <span class="k">do</span>
+  <span class="n">html5</span>
+  <span class="n">html</span> <span class="k">do</span>
+    <span class="n">head</span> <span class="p">{</span> <span class="n">title</span> <span class="s1">&#39;my_page&#39;</span> <span class="p">}</span>
+    <span class="n">body</span> <span class="k">do</span>
+      <span class="n">div</span><span class="o">.</span><span class="n">content!</span> <span class="k">do</span>
+        <span class="nb">p</span><span class="o">.</span><span class="n">centered</span> <span class="s2">&quot;my page&#39;s content&quot;</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span><span class="o">.</span><span class="n">to_html</span>
+</code></pre></div>
 <p>returns</p>
+<div class="highlight"><pre><code class="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>my_page<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;centered&quot;</span><span class="nt">&gt;</span>my page&#39;s content<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
+<h2>What&#39;s new</h2>
 
-<p>``` html
-&lt;!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head></p>
-
-<pre><code>&lt;title&gt;my_page&lt;/title&gt;
-</code></pre>
-
-<p>  </head>
-  <body></p>
-
-<pre><code>&lt;div id="content"&gt;
-  &lt;p class="centered"&gt;my page's content&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>  </body>
-</html>
-```</p>
-
-<h2>What&rsquo;s new</h2>
-
-<p>There is not much news, only the name and it&rsquo;s no longer dependent on ActiveSupport.
+<p>There is not much news, only the name and it&#39;s no longer dependent on ActiveSupport. 
 This is maintenance release.</p>
 
 <h2>For those not knowing the gem</h2>
@@ -74,21 +58,18 @@ This is maintenance release.</p>
 <p>Main features of Htmless are:</p>
 
 <ul>
-<li>It&rsquo;s as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
-<li>You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
-<li>You can write html in pure Ruby.</li>
+<li>  It&#39;s as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
+<li>  You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
+<li>  You can write html in pure Ruby. </li>
 </ul>
-
 
 <h2>Do you wish to know more?</h2>
 
 <ul>
-<li>Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+<li>  Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/htmless/">http://blog.pitr.ch/blog/categories/htmless/</a></li>
 </ul>
-
-
-<p>Please leave a comment if you have questions.</p>
 ]]></content>
   </entry>
   

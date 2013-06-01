@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Algebrick - Algebraic types and pattern matching for Ruby - Pitr.ch</title>
+  <title>Algebrick - bump to version 0.1.2 - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="I&#39;ve just released a new gem algebrick which brings algebraic types and pattern matching to Ruby.
-It&#39;s not as powerfull as Haskell&#39;s but &hellip;">
+  <meta name="description" content="Call #type_def directly Algebraic::DSL module does not have to be extended into your module to access #type_def any more.
+It can be now called &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ It&#39;s not as powerfull as Haskell&#39;s but &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby">
+  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -88,7 +88,7 @@ It&#39;s not as powerfull as Haskell&#39;s but &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Algebrick - Algebraic Types and Pattern Matching for Ruby</h1>
+      <h1 class="entry-title">Algebrick - Bump to Version 0.1.2</h1>
     
     
       <p class="meta">
@@ -104,7 +104,7 @@ It&#39;s not as powerfull as Haskell&#39;s but &hellip;">
   
 
 
-<time datetime="2013-05-14T21:19:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+<time datetime="2013-06-01T17:22:00+02:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -116,73 +116,48 @@ It&#39;s not as powerfull as Haskell&#39;s but &hellip;">
   </header>
 
 
-<div class="entry-content"><p>I&#39;ve just released a new gem <code>algebrick</code> which brings <strong>algebraic types</strong> and <strong>pattern matching</strong> to Ruby.
-It&#39;s not as powerfull as Haskell&#39;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
+<div class="entry-content"><!-- more -->
 
-<!-- more -->
+<h2>Call <code>#type_def</code> directly</h2>
 
-<h2>Quick example</h2>
+<p><code>Algebraic::DSL</code> module does not have to be extended into your module to access <code>#type_def</code> any more.
+It can be now called directly with passing the base module to define the new types.</p>
 
-<p>Load DSL for type definition and define some algebraic types</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span> <span class="nb">self</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">boolean</span> <span class="o">===</span> <span class="no">TrueClass</span> <span class="o">|</span> <span class="no">FalseClass</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<h2>Wrong field</h2>
+
+<p>When wrong field is accessed it will now raise an <code>ArgummentError</code> instead of silently returning <code>nil</code></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">extend</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:DSL</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">type_def</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">leaf</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">tree</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">tree</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="nb">Integer</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">][</span><span class="ss">:middle</span><span class="o">]</span> <span class="k">rescue</span> <span class="vg">$!</span>
+</span><span class='line'><span class="c1"># =&gt; #&lt;ArgumentError: uknown field :middle&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<p>Now types <code>Tree(Empty | Leaf | Node)</code>, <code>Empty</code>, <code>Leaf(Integer)</code> and <code>Node(Tree, Tree)</code> are defined.
-Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> example.</p>
+<h2>Access fields by method</h2>
+
+<p>Call <code>#add_all_field_method_accessors</code> on a product type to get access to fields by methods.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Tree</span>
-</span><span class='line'>  <span class="c1"># compute depth of a tree</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">depth</span>
-</span><span class='line'>    <span class="n">match</span> <span class="nb">self</span><span class="p">,</span>
-</span><span class='line'>          <span class="no">Empty</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">,</span>
-</span><span class='line'>          <span class="no">Leaf</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>          <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="k">do</span>
-</span><span class='line'>            <span class="mi">1</span> <span class="o">+</span> <span class="o">[</span><span class="n">left</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">depth</span><span class="o">].</span><span class="n">max</span>
-</span><span class='line'>          <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tree</span><span class="o">.</span><span class="n">add_all_field_method_accessors</span>
+</span><span class='line'><span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">left</span>   <span class="c1"># =&gt; Empty</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<p>Methods are defined on <strong>all</strong> values of type Tree</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Empty</span><span class="o">.</span><span class="n">depth</span>                                        <span class="c1"># =&gt; 0</span>
-</span><span class='line'><span class="no">Leaf</span><span class="o">[</span><span class="mi">10</span><span class="o">].</span><span class="n">depth</span>                                     <span class="c1"># =&gt; 1</span>
-</span><span class='line'><span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">depth</span>                         <span class="c1"># =&gt; 2</span>
-</span><span class='line'><span class="no">Node</span><span class="o">[</span><span class="no">Empty</span><span class="p">,</span> <span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">]].</span><span class="n">depth</span>            <span class="c1"># =&gt; 3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>  Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
-<li>  Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
-<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/algebrick/">http://blog.pitr.ch/blog/categories/algebrick/</a></li>
-</ul>
+<p>There are also methods <code>add_field_method_accessor</code> and <code>add_field_method_accessors</code> to add accessor/s selectively.</p>
 </div>
 
 
@@ -205,7 +180,7 @@ Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> exam
   
 
 
-<time datetime="2013-05-14T21:19:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+<time datetime="2013-06-01T17:22:00+02:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
       
 
 <span class="categories">
@@ -219,7 +194,7 @@ Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> exam
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/" >Tweet</a>
   
   
   
@@ -228,10 +203,10 @@ Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> exam
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/05/14/praise-pry-session-for-every-exception/" title="Previous Post: Praise - pry session for every exception">&laquo; Praise - pry session for every exception</a>
+        <a class="basic-alignment left" href="/blog/2013/06/01/algebrick-bump-to-version-0-1-1/" title="Previous Post: Algebrick - bump to version 0.1.1">&laquo; Algebrick - bump to version 0.1.1</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/" title="Next Post: How to find pull-request by a commit sha">How to find pull-request by a commit sha &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/" title="Next Post: Praise - bump to version 0.0.3">Praise - bump to version 0.0.3 &raquo;</a>
       
     </p>
   </footer>
@@ -303,8 +278,8 @@ Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> exam
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/';
-        var disqus_url = 'http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/';
+        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/';
+        var disqus_url = 'http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/';
         var disqus_script = 'embed.js';
       
     (function () {

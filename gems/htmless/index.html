@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Gems - Pitr.ch</title>
+  <title>Htmless - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Gems Algebrick - algebraic types and pattern matching
-Htmless - fast html5 builder
-Justified - adds missing causes to exceptions
-Praise - intercepts &hellip;">
+  <meta name="description" content="Htmless Fast and extensible HTML5 builder in pure Ruby Documentation: http://blog.pitr.ch/htmless Source: https://github.com/pitr-ch/htmless Blog: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ Praise - intercepts &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/gems">
+  <link rel="canonical" href="http://blog.pitr.ch/gems/htmless">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -89,24 +86,68 @@ Praise - intercepts &hellip;">
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Gems</h1>
+    <h1 class="entry-title">Htmless</h1>
     
   </header>
   
-  <ul>
-<li><a href="/gems/algebrick">Algebrick</a> - <strong>algebraic types</strong> and <strong>pattern matching</strong></li>
-<li><a href="/gems/htmless">Htmless</a> - <strong>fast</strong> html5 builder</li>
-<li><a href="/gems/justified">Justified</a> - adds <strong>missing causes</strong> to exceptions</li>
-<li><a href="/gems/praise">Praise</a> - intercepts <code>#raise</code> calls, spawns <code>pry</code> sessions for them</li>
+  <p><a href="https://travis-ci.org/pitr-ch/htmless"><img src="https://travis-ci.org/pitr-ch/htmless.png" alt="Build Status"></a></p>
+
+<p><strong>Fast</strong> and <strong>extensible</strong> HTML5 builder in pure <strong>Ruby</strong></p>
+
+<ul>
+<li>  Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/htmless/">http://blog.pitr.ch/blog/categories/htmless/</a></li>
 </ul>
 
+<h2>Quick syntax example</h2>
+<div class="highlight"><pre><code class="ruby"><span class="ss">Htmless</span><span class="p">:</span><span class="ss">:Formatted</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">go_in</span> <span class="k">do</span>
+  <span class="n">html5</span>
+  <span class="n">html</span> <span class="k">do</span>
+    <span class="n">head</span> <span class="p">{</span> <span class="n">title</span> <span class="s1">&#39;my_page&#39;</span> <span class="p">}</span>
+    <span class="n">body</span> <span class="k">do</span>
+      <span class="n">div</span><span class="o">.</span><span class="n">content!</span> <span class="k">do</span>
+        <span class="nb">p</span><span class="o">.</span><span class="n">centered</span> <span class="s2">&quot;my page&#39;s content&quot;</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span><span class="o">.</span><span class="n">to_html</span>
+</code></pre></div>
+<p>returns</p>
+<div class="highlight"><pre><code class="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>my_page<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;centered&quot;</span><span class="nt">&gt;</span>my page&#39;s content<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
   
     <footer>
       
       
+        <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/gems/htmless/index.html" data-via="" data-counturl="http://blog.pitr.ch/gems/htmless/index.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
     </footer>
   
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -162,6 +203,22 @@ Praise - intercepts &hellip;">
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'pitr-ch';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.pitr.ch/gems/htmless/index.html';
+        var disqus_url = 'http://blog.pitr.ch/gems/htmless/index.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

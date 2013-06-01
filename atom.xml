@@ -4,7 +4,7 @@
   <title><![CDATA[Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-19T17:22:51+02:00</updated>
+  <updated>2013-06-01T19:17:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Justified - add missing causes to exceptions]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/"/>
+    <updated>2013-06-01T19:52:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions</id>
+    <content type="html">
+      <![CDATA[
+      <p>I&#39;ve just published a new gem called <code>justified</code> which is adding missing causes to Ruby exceptions.
+When exception is risen because of another it is stored in the new one and backtrace is appended with  </p>
+<div class="highlight"><pre><code class="text">from caused by: (AnError) an ugly bug
+from justified.rb:83:in `bad_code&#39;
+from     ... skipped 4 lines
+</code></pre></div>
+
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Praise - bump to version 0.0.3]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/"/>
+    <updated>2013-06-01T19:05:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3</id>
+    <content type="html">
+      <![CDATA[
+      
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.2]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2</id>
+    <content type="html">
+      <![CDATA[
+      
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.1]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1</id>
+    <content type="html">
+      <![CDATA[
+      
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Htmless - Fast extensible html5 builder in pure Ruby]]></title>
@@ -58,8 +136,8 @@
     <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
     <content type="html">
       <![CDATA[
-      <p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
-It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
+      <p>I&#39;ve just released a new gem <code>algebrick</code> which brings <strong>algebraic types</strong> and <strong>pattern matching</strong> to Ruby.
+It&#39;s not as powerfull as Haskell&#39;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
 
 
       
@@ -79,7 +157,7 @@ It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful.
     <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
     <content type="html">
       <![CDATA[
-      <p>I&rsquo;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
+      <p>I&#39;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
 A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algebrick | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/algebrick/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-05-19T17:22:51+02:00</updated>
+  <updated>2013-06-01T19:17:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -14,86 +14,108 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.2]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<h2>Call <code>#type_def</code> directly</h2>
+
+<p><code>Algebraic::DSL</code> module does not have to be extended into your module to access <code>#type_def</code> any more.
+It can be now called directly with passing the base module to define the new types.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span> <span class="nb">self</span> <span class="k">do</span>
+  <span class="n">boolean</span> <span class="o">===</span> <span class="no">TrueClass</span> <span class="o">|</span> <span class="no">FalseClass</span>
+<span class="k">end</span>
+</code></pre></div>
+<h2>Wrong field</h2>
+
+<p>When wrong field is accessed it will now raise an <code>ArgummentError</code> instead of silently returning <code>nil</code></p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">tree</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="nb">Integer</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">][</span><span class="ss">:middle</span><span class="o">]</span> <span class="k">rescue</span> <span class="vg">$!</span> 
+<span class="c1"># =&gt; #&lt;ArgumentError: uknown field :middle&gt;</span>
+</code></pre></div>
+<h2>Access fields by method</h2>
+
+<p>Call <code>#add_all_field_method_accessors</code> on a product type to get access to fields by methods.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Tree</span><span class="o">.</span><span class="n">add_all_field_method_accessors</span>
+<span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">left</span>   <span class="c1"># =&gt; Empty</span>
+</code></pre></div>
+<p>There are also methods <code>add_field_method_accessor</code> and <code>add_field_method_accessors</code> to add accessor/s selectively.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.1]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<h2>Method <code>#+</code> is deprecated</h2>
+<div class="highlight"><pre><code class="ruby"><span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">+-&gt;</span> <span class="n">v</span> <span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+</code></pre></div>
+<p><code>#-</code>, <code>#&gt;&gt;</code> and <code>#case</code> should be used instead</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">v</span> <span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+<span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">&gt;&gt;-&gt;</span> <span class="n">v</span> <span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+<span class="no">Leaf</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">)</span><span class="o">.</span><span class="n">case</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="o">*</span><span class="mi">2</span> <span class="p">}</span>
+</code></pre></div>
+<h2>Delegation from Types</h2>
+
+<p><code>#-</code>, <code>#&gt;&gt;</code> and <code>#case</code> are now delegated from types, it simplifies calls on atom types</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">None</span><span class="o">.</span><span class="n">to_m</span> <span class="o">&gt;&gt;</span> <span class="kp">nil</span> <span class="c1"># to_m can be omitted</span>
+<span class="no">None</span> <span class="o">&gt;&gt;</span> <span class="kp">nil</span>        
+</code></pre></div>]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Algebrick - Algebraic types and pattern matching for Ruby]]></title>
     <link href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/"/>
     <updated>2013-05-14T21:19:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve just released a new gem <strong>algebrick</strong> which brings Algebraic types and pattern matching to Ruby.
-It&rsquo;s not as powerfull as Haskell&rsquo;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
+    <content type="html"><![CDATA[<p>I&#39;ve just released a new gem <code>algebrick</code> which brings <strong>algebraic types</strong> and <strong>pattern matching</strong> to Ruby.
+It&#39;s not as powerfull as Haskell&#39;s but it can still be quite useful. Let me give you a quick taste of the syntax.</p>
 
 <!-- more -->
 
+<h2>Quick example</h2>
 
-<p>``` ruby Quick example</p>
+<p>Load DSL for type definition and define some algebraic types</p>
+<div class="highlight"><pre><code class="ruby"><span class="kp">extend</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:DSL</span>
 
-<h1>load DSL for type definition</h1>
-
-<p>extend Algebrick::DSL                              # => main</p>
-
-<h1>define a Maybe type, which has two possible values:</h1>
-
-<h1>None or Some caring a value of Object type</h1>
-
-<p>type_def { maybe === none | some(Object) }</p>
-
-<h1>=> [Maybe(None | Some), None, Some(Object)]</h1>
-
-<h1>Maybe, None and Some are now defined</h1>
-
-<p>[Maybe, None, Some]</p>
-
-<h1>=> [Maybe(None | Some), None, Some(Object)]</h1>
-
-<h1>access #match and #any methods for pattern matching</h1>
-
-<p>extend Algebrick::Matching                         # => main</p>
-
-<p>match None,</p>
-
-<pre><code>  None &gt;&gt; nil,
-  # ~ will match value of Some and pass it to the block
-  Some.(~any) --&gt; value { value }              # =&gt; nil
-</code></pre>
-
-<p>match Some[1],</p>
-
-<pre><code>  None &gt;&gt; nil,
-  Some.(~any) --&gt; value { value*2 }            # =&gt; 2
-</code></pre>
-
-<h1>lets add some method to the Maybe type</h1>
-
-<p>module Maybe
-  def maybe(&amp;block)</p>
-
-<pre><code>case self
-when None
-when Some
-  block.call value
-end
-</code></pre>
-
-<p>  end
-end                                                # => nil</p>
-
-<h1>#maybe method is now defined on both None and Some</h1>
-
-<p>None.maybe { |_| raise &lsquo;never ever happens&rsquo; }      # => nil</p>
-
-<h1>block is called with the value</h1>
-
-<p>Some[1].maybe { |v| v*2 }                          # => 2
-```</p>
-
+<span class="n">type_def</span> <span class="k">do</span>
+  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">leaf</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">tree</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Now types <code>Tree(Empty | Leaf | Node)</code>, <code>Empty</code>, <code>Leaf(Integer)</code> and <code>Node(Tree, Tree)</code> are defined.
+Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> example.</p>
+<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Tree</span>
+  <span class="c1"># compute depth of a tree</span>
+  <span class="k">def</span> <span class="nf">depth</span>
+    <span class="n">match</span> <span class="nb">self</span><span class="p">,</span>
+          <span class="no">Empty</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="no">Leaf</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="k">do</span>
+            <span class="mi">1</span> <span class="o">+</span> <span class="o">[</span><span class="n">left</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">depth</span><span class="o">].</span><span class="n">max</span>
+          <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Methods are defined on <strong>all</strong> values of type Tree</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Empty</span><span class="o">.</span><span class="n">depth</span>                                        <span class="c1"># =&gt; 0</span>
+<span class="no">Leaf</span><span class="o">[</span><span class="mi">10</span><span class="o">].</span><span class="n">depth</span>                                     <span class="c1"># =&gt; 1</span>
+<span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">depth</span>                         <span class="c1"># =&gt; 2</span>
+<span class="no">Node</span><span class="o">[</span><span class="no">Empty</span><span class="p">,</span> <span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">]].</span><span class="n">depth</span>            <span class="c1"># =&gt; 3</span>
+</code></pre></div>
 <h2>Do you wish to know more?</h2>
 
 <ul>
-<li>Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
-<li>Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
+<li>  Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/algebrick/">http://blog.pitr.ch/blog/categories/algebrick/</a></li>
 </ul>
-
-
-<p>Please leave a comment if you have questions.</p>
 ]]></content>
   </entry>
   

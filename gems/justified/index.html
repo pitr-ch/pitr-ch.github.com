@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Gems - Pitr.ch</title>
+  <title>Justified - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Gems Algebrick - algebraic types and pattern matching
-Htmless - fast html5 builder
-Justified - adds missing causes to exceptions
-Praise - intercepts &hellip;">
+  <meta name="description" content="Justified A mini-gem to add missing causes to exception backtrace-s like Java has. from caused by: (AnError) an ugly bug from justified.rb:83:in ` &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ Praise - intercepts &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/gems">
+  <link rel="canonical" href="http://blog.pitr.ch/gems/justified">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -89,24 +86,45 @@ Praise - intercepts &hellip;">
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Gems</h1>
+    <h1 class="entry-title">Justified</h1>
     
   </header>
   
-  <ul>
-<li><a href="/gems/algebrick">Algebrick</a> - <strong>algebraic types</strong> and <strong>pattern matching</strong></li>
-<li><a href="/gems/htmless">Htmless</a> - <strong>fast</strong> html5 builder</li>
-<li><a href="/gems/justified">Justified</a> - adds <strong>missing causes</strong> to exceptions</li>
-<li><a href="/gems/praise">Praise</a> - intercepts <code>#raise</code> calls, spawns <code>pry</code> sessions for them</li>
+  <p><a href="https://travis-ci.org/pitr-ch/justified"><img src="https://travis-ci.org/pitr-ch/justified.png" alt="Build Status"></a></p>
+
+<p>A mini-gem to add missing <strong>causes</strong> to exception <code>backtrace</code>-s like Java has.</p>
+<div class="highlight"><pre><code class="text">    from caused by: (AnError) an ugly bug
+    from justified.rb:83:in `bad_code&#39;
+    from     ... skipped 4 lines
+</code></pre></div>
+<ul>
+<li>  Documentation: <a href="http://blog.pitr.ch/justified">http://blog.pitr.ch/justified</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/justified">https://github.com/pitr-ch/justified</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/justified/">http://blog.pitr.ch/blog/categories/justified/</a></li>
 </ul>
 
   
     <footer>
       
       
+        <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/gems/justified/index.html" data-via="" data-counturl="http://blog.pitr.ch/gems/justified/index.html" >Tweet</a>
+  
+  
+  
+</div>
+
+      
     </footer>
   
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -162,6 +180,22 @@ Praise - intercepts &hellip;">
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'pitr-ch';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.pitr.ch/gems/justified/index.html';
+        var disqus_url = 'http://blog.pitr.ch/gems/justified/index.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

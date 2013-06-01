@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: git | Pitr.ch]]></title>
-  <link href="http://blog.pitr.ch/blog/categories/git/atom.xml" rel="self"/>
+  <title><![CDATA[Category: how | Pitr.ch]]></title>
+  <link href="http://blog.pitr.ch/blog/categories/how/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
   <updated>2013-06-01T19:17:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>

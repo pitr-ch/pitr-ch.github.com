@@ -2,23 +2,39 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/</loc>
-        <lastmod>2013-05-17T12:20:13+02:00</lastmod>
+        <lastmod>2013-06-01T18:42:11+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/
         </loc>
-        <lastmod>2013-05-17T12:20:08+02:00</lastmod>
+        <lastmod>2013-06-01T17:12:30+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/</loc>
-        <lastmod>2013-05-17T12:24:16+02:00</lastmod>
+        <lastmod>2013-06-01T16:54:36+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/
         </loc>
-        <lastmod>2013-05-19T17:19:00+02:00</lastmod>
+        <lastmod>2013-06-01T17:12:45+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/</loc>
+        <lastmod>2013-06-01T18:01:40+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/</loc>
+        <lastmod>2013-06-01T18:01:22+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/</loc>
+        <lastmod>2013-06-01T19:11:34+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/</loc>
+        <lastmod>2013-06-01T19:13:30+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/404.html</loc>
@@ -26,19 +42,35 @@
     </url>
     <url>
         <loc>http://blog.pitr.ch/about-me/</loc>
-        <lastmod>2013-05-17T11:53:35+02:00</lastmod>
+        <lastmod>2013-06-01T18:41:36+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/archives/</loc>
-        <lastmod>2013-05-19T17:19:00+02:00</lastmod>
+        <lastmod>2013-06-01T19:13:30+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/gems/algebrick/</loc>
+        <lastmod>2013-06-01T15:19:06+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/gems/htmless/</loc>
+        <lastmod>2013-06-01T16:42:33+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/</loc>
-        <lastmod>2013-05-17T11:55:02+02:00</lastmod>
+        <lastmod>2013-06-01T16:19:08+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/gems/justified/</loc>
+        <lastmod>2013-06-01T15:44:22+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.pitr.ch/gems/praise/</loc>
+        <lastmod>2013-06-01T15:47:29+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/</loc>
-        <lastmod>2013-05-19T17:19:00+02:00</lastmod>
+        <lastmod>2013-06-01T19:13:30+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/robots.txt</loc>

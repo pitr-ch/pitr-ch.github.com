@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: gem - Pitr.ch</title>
+  <title>Algebrick - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Category: gem">
+  <meta name="description" content="Algebrick Is a small gem providing algebraic types and pattern matching on them for Ruby. Documentation: http://blog.pitr.ch/algebrick Source: https &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.chblog/categories/gem">
+  <link rel="canonical" href="http://blog.pitr.ch/gems/algebrick">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -86,117 +86,80 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Category: Gem</h1>
+    <h1 class="entry-title">Algebrick</h1>
     
   </header>
   
-  <div id="blog-archives" class="category">
+  <p><a href="https://travis-ci.org/pitr-ch/algebrick"><img src="https://travis-ci.org/pitr-ch/algebrick.png" alt="Build Status"></a></p>
 
+<p>Is a small gem providing <strong>algebraic types</strong> and <strong>pattern matching</strong> on them for Ruby.</p>
 
+<ul>
+<li>  Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/algebrick/">http://blog.pitr.ch/blog/categories/algebrick/</a></li>
+</ul>
 
+<h2>What is it good for?</h2>
+
+<ul>
+<li>  Defining data structures.</li>
+<li>  Algebraic types play nice with JSON serialization and deserialization. It is ideal for defining
+message-based cross-process communication.</li>
+<li>  and more&#8230;</li>
+</ul>
+
+<h2>Quick example</h2>
+
+<p>Load DSL for type definition and define some algebraic types</p>
+<div class="highlight"><pre><code class="ruby"><span class="kp">extend</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:DSL</span>
+
+<span class="n">type_def</span> <span class="k">do</span>
+  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">leaf</span><span class="p">(</span><span class="nb">Integer</span><span class="p">)</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">tree</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Now types <code>Tree(Empty | Leaf | Node)</code>, <code>Empty</code>, <code>Leaf(Integer)</code> and <code>Node(Tree, Tree)</code> are defined.
+Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> example.</p>
+<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Tree</span>
+  <span class="c1"># compute depth of a tree</span>
+  <span class="k">def</span> <span class="nf">depth</span>
+    <span class="n">match</span> <span class="nb">self</span><span class="p">,</span>
+          <span class="no">Empty</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="no">Leaf</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="k">do</span>
+            <span class="mi">1</span> <span class="o">+</span> <span class="o">[</span><span class="n">left</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">depth</span><span class="o">].</span><span class="n">max</span>
+          <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Methods are defined on <strong>all</strong> values of type Tree</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Empty</span><span class="o">.</span><span class="n">depth</span>                                        <span class="c1"># =&gt; 0</span>
+<span class="no">Leaf</span><span class="o">[</span><span class="mi">10</span><span class="o">].</span><span class="n">depth</span>                                     <span class="c1"># =&gt; 1</span>
+<span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">depth</span>                         <span class="c1"># =&gt; 2</span>
+<span class="no">Node</span><span class="o">[</span><span class="no">Empty</span><span class="p">,</span> <span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">]].</span><span class="n">depth</span>            <span class="c1"># =&gt; 3</span>
+</code></pre></div>
   
-  <h2>2013</h2>
-
-<article>
+    <footer>
+      
+      
+        <div class="sharing">
   
-<h1><a href="/blog/2013/06/01/justified-add-missing-causes-to-exceptions/">Justified - add missing causes to exceptions</a></h1>
-<time datetime="2013-06-01T19:52:00+02:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/justified/'>justified</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/gems/algebrick/index.html" data-via="" data-counturl="http://blog.pitr.ch/gems/algebrick/index.html" >Tweet</a>
   
-<h1><a href="/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/">Praise - bump to version 0.0.3</a></h1>
-<time datetime="2013-06-01T19:05:00+02:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/praise/'>praise</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
   
-<h1><a href="/blog/2013/06/01/algebrick-bump-to-version-0-1-2/">Algebrick - bump to version 0.1.2</a></h1>
-<time datetime="2013-06-01T17:22:00+02:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/algebrick/'>algebrick</a>, <a class='category' href='/blog/categories/gem/'>gem</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
   
-<h1><a href="/blog/2013/06/01/algebrick-bump-to-version-0-1-1/">Algebrick - bump to version 0.1.1</a></h1>
-<time datetime="2013-06-01T17:22:00+02:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/algebrick/'>algebrick</a>, <a class='category' href='/blog/categories/gem/'>gem</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/">Htmless - Fast extensible html5 builder in pure Ruby</a></h1>
-<time datetime="2013-05-17T12:23:00+02:00" pubdate><span class='month'>May</span> <span class='day'>17</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/htmless/'>htmless</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/">Algebrick - Algebraic types and pattern matching for Ruby</a></h1>
-<time datetime="2013-05-14T21:19:00+02:00" pubdate><span class='month'>May</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/algebrick/'>algebrick</a>, <a class='category' href='/blog/categories/gem/'>gem</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - pry session for every exception</a></h1>
-<time datetime="2013-05-14T15:09:00+02:00" pubdate><span class='month'>May</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/praise/'>praise</a></span>
-</footer>
-
-
-</article>
-
 </div>
 
+      
+    </footer>
   
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -257,7 +220,10 @@
       var disqus_shortname = 'pitr-ch';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.pitr.ch/gems/algebrick/index.html';
+        var disqus_url = 'http://blog.pitr.ch/gems/algebrick/index.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
