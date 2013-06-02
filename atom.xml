@@ -4,7 +4,7 @@
   <title><![CDATA[Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-01T19:29:13+02:00</updated>
+  <updated>2013-06-02T15:19:31+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Make traps for future mistakes]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes/"/>
+    <updated>2013-06-02T10:58:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes</id>
+    <content type="html">
+      <![CDATA[
+      <p>I love to raise <code>ArgumentErrors</code>, <code>TypeErrors</code>, etc. whenever an API is misused. It prevents a lot of bugs. 
+Recently I fond another use for exceptions. </p>
+
+
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Justified - add missing causes to exceptions]]></title>
