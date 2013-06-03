@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algebrick | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/algebrick/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-03T19:15:10+02:00</updated>
+  <updated>2013-06-03T19:49:19+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -97,6 +97,7 @@ Lets add some methods, don&#39;t miss the <strong>pattern matching</strong> exam
     <span class="n">match</span> <span class="nb">self</span><span class="p">,</span>
           <span class="no">Empty</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">,</span>
           <span class="no">Leaf</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="c1"># ~ will store and pass matched parts to variables left and right</span>
           <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="k">do</span>
             <span class="mi">1</span> <span class="o">+</span> <span class="o">[</span><span class="n">left</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">depth</span><span class="o">].</span><span class="n">max</span>
           <span class="k">end</span>

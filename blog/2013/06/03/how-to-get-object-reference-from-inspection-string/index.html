@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Praise - pry session for every exception - Pitr.ch</title>
+  <title>How to get object reference from inspection-string - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="I&#39;ve just released a new gem praise (pry + raise = praise).
-A small gem for intercepting raise calls to dig up hidden and buried exceptions. &hellip;">
+  <meta name="description" content="Suppose there is a test failing and only a inspection string is shown in the error message.
+#&lt;Class:0x007ff706e7eb68&gt; It would be very &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ A small gem for intercepting raise calls to dig up hidden and buried exceptions.
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception">
+  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -88,7 +88,7 @@ A small gem for intercepting raise calls to dig up hidden and buried exceptions.
   
   <header>
     
-      <h1 class="entry-title">Praise - Pry Session for Every Exception</h1>
+      <h1 class="entry-title">How to Get Object Reference From Inspection-string</h1>
     
     
       <p class="meta">
@@ -104,7 +104,7 @@ A small gem for intercepting raise calls to dig up hidden and buried exceptions.
   
 
 
-<time datetime="2013-05-14T15:09:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+<time datetime="2013-06-03T19:22:00+02:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -116,25 +116,21 @@ A small gem for intercepting raise calls to dig up hidden and buried exceptions.
   </header>
 
 
-<div class="entry-content"><p>I&#39;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
-A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
+<div class="entry-content"><!-- more -->
 
-<!-- more -->
+<p>Suppose there is a test failing and only a inspection string is shown in the error message.</p>
+<div class="highlight"><pre><code class="text">#&lt;Class:0x007ff706e7eb68&gt;
+</code></pre></div>
+<p>It would be very convenient to retrieve a reference to the object for further inspection.
+The following snippet will give you the object if it isn&#39;t garbage-collected yet.</p>
 
-<h2>Difference between <code>praise</code> and <code>pry-rescue</code></h2>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ObjectSpace</span><span class="o">.</span><span class="n">_id2ref</span> <span class="s1">&#39;0x007ff706e7eb68&#39;</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p><code>praise</code> allows a developer to investigate all exceptions including the ones rescued later.
-<code>pry-rescue</code> on the other hand will work only for exceptions which are un-handled by the process.
-Typical use-case is e.g. a worker, which is rescuing all exceptions. <code>pry-rescue</code> cannot help with
-investigation of these exceptions.</p>
-
-<h2>Do you wish to know more?</h2>
-
-<ul>
-<li>  Documentation: <a href="http://blog.pitr.ch/praise">http://blog.pitr.ch/praise</a></li>
-<li>  Source: <a href="https://github.com/pitr-ch/praise">https://github.com/pitr-ch/praise</a></li>
-<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/praise/">http://blog.pitr.ch/blog/categories/praise/</a></li>
-</ul>
+<p>If you are asking as me about the strange bit shift <code>&gt;&gt; 1</code>, I&#39;ll humbly point you to 
+<a href="http://stackoverflow.com/questions/2818602/in-ruby-why-does-inspect-print-out-some-kind-of-object-id-which-is-different">http://stackoverflow.com/questions/2818602/in-ruby-why-does-inspect-print-out-some-kind-of-object-id-which-is-different</a> 
+where can you find some explanation.</p>
 </div>
 
 
@@ -157,12 +153,12 @@ investigation of these exceptions.</p>
   
 
 
-<time datetime="2013-05-14T15:09:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+<time datetime="2013-06-03T19:22:00+02:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/praise/'>praise</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/how/'>how</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -171,7 +167,7 @@ investigation of these exceptions.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -182,8 +178,8 @@ investigation of these exceptions.</p>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/06/02/make-traps-for-future-mistakes/" title="Previous Post: Make traps for future mistakes">&laquo; Make traps for future mistakes</a>
       
-        <a class="basic-alignment right" href="/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/" title="Next Post: Algebrick - Algebraic types and pattern matching for Ruby">Algebrick - Algebraic types and pattern matching for Ruby &raquo;</a>
       
     </p>
   </footer>
@@ -254,8 +250,8 @@ investigation of these exceptions.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/';
-        var disqus_url = 'http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/';
+        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/';
+        var disqus_url = 'http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/';
         var disqus_script = 'embed.js';
       
     (function () {

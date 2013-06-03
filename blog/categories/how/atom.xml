@@ -4,7 +4,7 @@
   <title><![CDATA[Category: how | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/how/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-03T19:15:10+02:00</updated>
+  <updated>2013-06-03T19:49:19+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to get object reference from inspection-string]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/"/>
+    <updated>2013-06-03T19:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<p>Suppose there is a test failing and only a inspection string is shown in the error message.</p>
+<div class="highlight"><pre><code class="text">#&lt;Class:0x007ff706e7eb68&gt;
+</code></pre></div>
+<p>It would be very convenient to retrieve a reference to the object for further inspection.
+The following snippet will give you the object if it isn&#39;t garbage-collected yet.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">ObjectSpace</span><span class="o">.</span><span class="n">_id2ref</span> <span class="s1">&#39;0x007ff706e7eb68&#39;</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+</code></pre></div>
+<p>If you are asking as me about the strange bit shift <code>&gt;&gt; 1</code>, I&#39;ll humbly point you to 
+<a href="http://stackoverflow.com/questions/2818602/in-ruby-why-does-inspect-print-out-some-kind-of-object-id-which-is-different">http://stackoverflow.com/questions/2818602/in-ruby-why-does-inspect-print-out-some-kind-of-object-id-which-is-different</a> 
+where can you find some explanation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to find pull-request by a commit sha]]></title>
