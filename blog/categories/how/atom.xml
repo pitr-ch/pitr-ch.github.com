@@ -4,7 +4,7 @@
   <title><![CDATA[Category: how | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/how/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-02T15:19:29+02:00</updated>
+  <updated>2013-06-03T19:15:10+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -55,7 +55,7 @@ d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
 </code></pre></div>
 <h2>Caution</h2>
 
-<p>This works only if all pull-requests ale merged directly into master. </p>
+<p>This works only if all pull-requests are merged directly into master. </p>
 ]]></content>
   </entry>
   

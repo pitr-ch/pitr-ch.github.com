@@ -9,7 +9,7 @@
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="I love to raise ArgumentErrors, TypeErrors, etc. whenever an API is misused. It prevents a lot of bugs. Recently I fond another use for exceptions. &hellip;">
+  <meta name="description" content="I love to raise ArgumentErrors, TypeErrors, etc. whenever an API is misused. It prevents a lot of bugs. Recently I found another use for exceptions. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -116,7 +116,7 @@
 
 
 <div class="entry-content"><p>I love to raise <code>ArgumentErrors</code>, <code>TypeErrors</code>, etc. whenever an API is misused. It prevents a lot of bugs. 
-Recently I fond another use for exceptions. </p>
+Recently I found another use for exceptions. </p>
 
 <!-- more -->
 
@@ -149,14 +149,14 @@ telling me what I&#39;ve forgotten to fix.</p>
 <h2>Another examples</h2>
 
 <ul>
-<li><p><strong>Monkey patch</strong> - When writing an monkey patch, a monkey patch should error when patched gem goes outside of
+<li><p><strong>Monkey patch</strong> - When writing a monkey patch, a monkey patch should error when patched gem goes outside of
 version range which was tested to work with the patch.</p>
 <div class="highlight"><pre><code class="ruby"><span class="n">range</span> <span class="o">=</span> <span class="ss">Gem</span><span class="p">:</span><span class="ss">:Version</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;0.1&#39;</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="ss">Gem</span><span class="p">:</span><span class="ss">:Version</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;0.3&#39;</span><span class="p">)</span>
 <span class="n">range</span><span class="o">.</span><span class="n">cover?</span> <span class="ss">Gem</span><span class="p">:</span><span class="ss">:Version</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">a_patched_gem_version</span><span class="p">)</span> <span class="ow">or</span>
     <span class="k">raise</span> <span class="s2">&quot;monkey eats only banana version </span><span class="si">#{</span><span class="n">range</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div></li>
 <li><p><strong>Internal API usage</strong> - Suppose a code is tied with an internal methods of Rails 3.0 and it&#39;s known that
-a upgrade to 3.2 is planned at some point. A error should be thrown when Rails are updated.</p>
+an upgrade to 3.2 is planned at some point. An error should be thrown when Rails are updated.</p>
 <div class="highlight"><pre><code class="ruby"><span class="ss">Gem</span><span class="p">:</span><span class="ss">:Version</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Rails</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">&lt;</span> <span class="ss">Gem</span><span class="p">:</span><span class="ss">:Version</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;3.1&#39;</span><span class="p">)</span> <span class="ow">or</span>
     <span class="k">raise</span> <span class="s1">&#39;revisit api usage&#39;</span>
 </code></pre></div></li>

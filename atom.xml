@@ -4,7 +4,7 @@
   <title><![CDATA[Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-02T15:19:29+02:00</updated>
+  <updated>2013-06-03T19:15:10+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -21,7 +21,7 @@
     <content type="html">
       <![CDATA[
       <p>I love to raise <code>ArgumentErrors</code>, <code>TypeErrors</code>, etc. whenever an API is misused. It prevents a lot of bugs. 
-Recently I fond another use for exceptions. </p>
+Recently I found another use for exceptions. </p>
 
 
       
@@ -42,7 +42,7 @@ Recently I fond another use for exceptions. </p>
     <content type="html">
       <![CDATA[
       <p>I&#39;ve just published a new gem called <code>justified</code> which is adding missing causes to Ruby exceptions.
-When exception is risen because of another it is stored in the new one and backtrace is appended with  </p>
+When an exception is risen because of another one it is stored in the new one, and backtrace is appended with following: </p>
 <div class="highlight"><pre><code class="text">from caused by: (AnError) an ugly bug
 from justified.rb:83:in `bad_code&#39;
 from     ... skipped 4 lines

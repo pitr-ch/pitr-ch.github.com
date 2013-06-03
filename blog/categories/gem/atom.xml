@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gem | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-02T15:19:29+02:00</updated>
+  <updated>2013-06-03T19:15:10+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -19,7 +19,7 @@
     <updated>2013-06-01T19:52:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions</id>
     <content type="html"><![CDATA[<p>I&#39;ve just published a new gem called <code>justified</code> which is adding missing causes to Ruby exceptions.
-When exception is risen because of another it is stored in the new one and backtrace is appended with  </p>
+When an exception is risen because of another one it is stored in the new one, and backtrace is appended with following: </p>
 <div class="highlight"><pre><code class="text">from caused by: (AnError) an ugly bug
 from justified.rb:83:in `bad_code&#39;
 from     ... skipped 4 lines
@@ -244,16 +244,16 @@ It can be now called directly with passing the base module to define the new typ
 </code></pre></div>
 <h2>What&#39;s new</h2>
 
-<p>There is not much news, only the name and it&#39;s no longer dependent on ActiveSupport. 
-This is maintenance release.</p>
+<p>There is not much new, only the name and that it&#39;s no longer dependent on ActiveSupport. 
+This is a maintenance release.</p>
 
-<h2>For those not knowing the gem</h2>
+<h2>For those unfamiliar with the gem</h2>
 
 <p>Main features of Htmless are:</p>
 
 <ul>
 <li>  It&#39;s as fast as template-engines (erb) and much faster then other Ruby HTML builders.</li>
-<li>  You can use inheritance (impossible with templates) and other goodness of Ruby.</li>
+<li>  You can use inheritance (impossible with templates) and other properties of Ruby.</li>
 <li>  You can write html in pure Ruby. </li>
 </ul>
 
