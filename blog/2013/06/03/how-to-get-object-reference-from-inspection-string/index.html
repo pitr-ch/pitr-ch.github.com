@@ -9,7 +9,7 @@
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Suppose there is a test failing and only a inspection string is shown in the error message.
+  <meta name="description" content="Suppose there is a test failing and only an inspection string is shown in the error message.
 #&lt;Class:0x007ff706e7eb68&gt; It would be very &hellip;">
   
 
@@ -118,7 +118,7 @@
 
 <div class="entry-content"><!-- more -->
 
-<p>Suppose there is a test failing and only a inspection string is shown in the error message.</p>
+<p>Suppose there is a test failing and only an inspection string is shown in the error message.</p>
 <div class="highlight"><pre><code class="text">#&lt;Class:0x007ff706e7eb68&gt;
 </code></pre></div>
 <p>It would be very convenient to retrieve a reference to the object for further inspection.
@@ -128,9 +128,9 @@ The following snippet will give you the object if it isn&#39;t garbage-collected
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">ObjectSpace</span><span class="o">.</span><span class="n">_id2ref</span> <span class="s1">&#39;0x007ff706e7eb68&#39;</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<p>If you are asking as me about the strange bit shift <code>&gt;&gt; 1</code>, I&#39;ll humbly point you to 
+<p>If you are asking about the strange bit shift <code>&gt;&gt; 1</code> as I am, I&#39;ll humbly point you to 
 <a href="http://stackoverflow.com/questions/2818602/in-ruby-why-does-inspect-print-out-some-kind-of-object-id-which-is-different">http://stackoverflow.com/questions/2818602/in-ruby-why-does-inspect-print-out-some-kind-of-object-id-which-is-different</a> 
-where can you find some explanation.</p>
+where you can find some explanation.</p>
 </div>
 
 
