@@ -9,7 +9,8 @@
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Justified A mini-gem to add missing causes to exception backtrace-s like Java has. from caused by: (AnError) an ugly bug from justified.rb:83:in ` &hellip;">
+  <meta name="description" content="Justified A mini-gem to add missing causes to exception backtrace-s like Java has. This gem will add following
+at the bottom of a backtrace: from &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,11 +93,32 @@
   
   <p><a href="https://travis-ci.org/pitr-ch/justified"><img src="https://travis-ci.org/pitr-ch/justified.png" alt="Build Status"></a></p>
 
-<p>A mini-gem to add missing <strong>causes</strong> to exception <code>backtrace</code>-s like Java has.</p>
+<p>A mini-gem to add missing <strong>causes</strong> to exception <code>backtrace</code>-s like Java has. This gem will add following
+at the bottom of a <code>backtrace</code>:</p>
 <div class="highlight"><pre><code class="text">    from caused by: (AnError) an ugly bug
     from justified.rb:83:in `bad_code&#39;
     from     ... skipped 4 lines
 </code></pre></div>
+<p>Exception cause can be also accessed with <code>#cause</code> method which returns <code>nil</code> or an <code>Exception</code>.</p>
+
+<h2>Example</h2>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;justified/standard_error&#39;</span>
+
+<span class="k">begin</span> 
+  <span class="k">raise</span> <span class="s1">&#39;a cause&#39;</span>
+<span class="k">rescue</span>
+  <span class="k">raise</span> <span class="s1">&#39;an exception&#39;</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>will print </p>
+<div class="highlight"><pre><code class="text">file.rb:6:in `rescue in &lt;main&gt;&#39;: an exception (RuntimeError)
+    from file.rb:3:in `&lt;main&gt;&#39;
+    from caused by: (RuntimeError) a cause
+    from file.rb:4:in `&lt;main&gt;&#39;
+    from     ... skipped 0 lines
+</code></pre></div>
+<h2>Links</h2>
+
 <ul>
 <li>  Documentation: <a href="http://blog.pitr.ch/justified">http://blog.pitr.ch/justified</a></li>
 <li>  Source: <a href="https://github.com/pitr-ch/justified">https://github.com/pitr-ch/justified</a></li>
