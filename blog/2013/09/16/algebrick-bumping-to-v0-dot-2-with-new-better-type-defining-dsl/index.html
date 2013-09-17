@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Algebrick - bump to version 0.1.2 - Pitr.ch</title>
+  <title>Algebrick - Bumping to v0.2 with new better type-defining-DSL - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Call #type_def directly Algebraic::DSL module does not have to be extended into your module to access #type_def any more.
-It can be now called &hellip;">
+  <meta name="description" content="Finely I&#39;ve got an idea how to improve the old-not-so-good-DSL for Algebraic type definition. With old DSL you would define Tree type as follows &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ It can be now called &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2">
+  <link rel="canonical" href="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -88,7 +87,7 @@ It can be now called &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Algebrick - Bump to Version 0.1.2</h1>
+      <h1 class="entry-title">Algebrick - Bumping to v0.2 With New Better type-defining-DSL</h1>
     
     
       <p class="meta">
@@ -104,7 +103,7 @@ It can be now called &hellip;">
   
 
 
-<time datetime="2013-06-01T17:22:00+02:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-09-16T22:03:00+02:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -116,48 +115,74 @@ It can be now called &hellip;">
   </header>
 
 
-<div class="entry-content"><!-- more -->
+<div class="entry-content"><p>Finely I&#39;ve got an idea how to improve the old-not-so-good-DSL for Algebraic type definition.</p>
 
-<h2>Call <code>#type_def</code> directly</h2>
+<!-- more -->
 
-<p><code>Algebraic::DSL</code> module does not have to be extended into your module to access <code>#type_def</code> any more.
-It can be now called directly with passing the base module to define the new types.</p>
+<p>With old DSL you would define Tree type as follows.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span> <span class="nb">self</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">boolean</span> <span class="o">===</span> <span class="no">TrueClass</span> <span class="o">|</span> <span class="no">FalseClass</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">include</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:DSL</span>
+</span><span class='line'><span class="n">type_def</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">tree</span> <span class="o">===</span> <span class="n">tip</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<h2>Wrong field</h2>
+<p>Although this looks quite nice and it&#39;s concise, it magically defines constants <code>Tree</code>, <code>Tip</code> and <code>Node</code>. Later when you come back to the code it&#39;s hard to  find where the constants are being defined. There is no <code>Tree = #something</code> in the source code. IDEs like RubyMine won&#39;t find the definition either.</p>
 
-<p>When wrong field is accessed it will now raise an <code>ArgummentError</code> instead of silently returning <code>nil</code></p>
+<p>I&#39;ve tried to improve the situation with manually setting the constants (this was never released).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tree</span><span class="p">,</span> <span class="no">Tip</span><span class="p">,</span> <span class="no">Node</span> <span class="o">=</span> <span class="n">type_def</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">tree</span> <span class="o">===</span> <span class="n">tip</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>But this has several other flows:</p>
+
+<ol>
+<li> If order of <code>tip</code> and <code>node</code> is changed in the definition, newly created types will end up in wrong constants since they are being returned by <code>#type_def</code> in order of first mention.</li>
+<li> When more types are being defined in <code>#type_def</code>&#39;s block it will get messy very soon.</li>
+</ol>
+
+<p>Then I&#39;ve finally realized that because <code>#instance_eval</code> and <code>#instance_exec</code> does not change the <code>Module.nesting</code> of the blocks, the block can be evaluated inside a scope with DSL methods keeping the constants defined in original place. This behavior allows the following definition of Algebraic types.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Algebrick</span><span class="o">.</span><span class="n">type_def</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">tree</span> <span class="o">===</span> <span class="n">empty</span> <span class="o">|</span> <span class="n">tree</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="nb">Integer</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tree</span> <span class="o">=</span> <span class="no">Algebrick</span><span class="o">.</span><span class="n">type</span> <span class="k">do</span> <span class="o">|</span><span class="n">tree</span><span class="o">|</span>
+</span><span class='line'>  <span class="no">Tip</span>  <span class="o">=</span> <span class="n">type</span>
+</span><span class='line'>  <span class="no">Node</span> <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">variants</span> <span class="no">Tip</span><span class="p">,</span> <span class="no">Node</span>
 </span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">][</span><span class="ss">:middle</span><span class="o">]</span> <span class="k">rescue</span> <span class="vg">$!</span>
-</span><span class='line'><span class="c1"># =&gt; #&lt;ArgumentError: uknown field :middle&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<h2>Access fields by method</h2>
+<p>It&#39;s been released in version 0.2.0.</p>
 
-<p>Call <code>#add_all_field_method_accessors</code> on a product type to get access to fields by methods.</p>
+<h2>Version 0.2.2</h2>
+
+<p>Version 0.2.1 just fixes release date of the gem. Version 0.2.2 adds minor improvement to the DSL. Field readers on products can be defined in DSL with methods <code>#readers *names</code> or <code>#all_readers</code> for all of them.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tree</span><span class="o">.</span><span class="n">add_all_field_method_accessors</span>
-</span><span class='line'><span class="no">Tree</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">left</span>   <span class="c1"># =&gt; Empty</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Node</span> <span class="o">=</span> <span class="n">type</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">fields</span> <span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span>
+</span><span class='line'>  <span class="n">all_readers</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<p>There are also methods <code>add_field_method_accessor</code> and <code>add_field_method_accessors</code> to add accessor/s selectively.</p>
+<p>I hope you like the new DSL. </p>
 </div>
 
 
@@ -180,7 +205,7 @@ It can be now called directly with passing the base module to define the new typ
   
 
 
-<time datetime="2013-06-01T17:22:00+02:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-09-16T22:03:00+02:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -194,7 +219,7 @@ It can be now called directly with passing the base module to define the new typ
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/" data-via="" data-counturl="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -205,10 +230,8 @@ It can be now called directly with passing the base module to define the new typ
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/06/01/algebrick-bump-to-version-0-1-1/" title="Previous Post: Algebrick - bump to version 0.1.1">&laquo; Algebrick - bump to version 0.1.1</a>
+        <a class="basic-alignment left" href="/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/" title="Previous Post: How to get object reference from inspection-string">&laquo; How to get object reference from inspection-string</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/" title="Next Post: Praise - bump to version 0.0.3">Praise - bump to version 0.0.3 &raquo;</a>
       
     </p>
   </footer>
@@ -279,8 +302,8 @@ It can be now called directly with passing the base module to define the new typ
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/';
-        var disqus_url = 'http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/';
+        var disqus_identifier = 'http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/';
+        var disqus_url = 'http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/';
         var disqus_script = 'embed.js';
       
     (function () {

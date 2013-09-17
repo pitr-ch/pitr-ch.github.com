@@ -4,7 +4,7 @@
   <title><![CDATA[Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-14T10:49:58+02:00</updated>
+  <updated>2013-09-17T20:08:48+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - Bumping to v0.2 with new better type-defining-DSL]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/"/>
+    <updated>2013-09-16T22:03:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl</id>
+    <content type="html">
+      <![CDATA[
+      <p>Finely I&#39;ve got an idea how to improve the old-not-so-good-DSL for Algebraic type definition.</p>
+
+
+      
+      
+      <footer>
+        <a rel="full-article" href="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/">Read on &rarr;</a>
+      </footer>
+      
+      ]]>
+    </content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to get object reference from inspection-string]]></title>
@@ -32,7 +52,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Make traps for future mistakes]]></title>
+    <title type="html"><![CDATA[Making traps for future mistakes]]></title>
     <link href="http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes/"/>
     <updated>2013-06-02T10:58:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes</id>

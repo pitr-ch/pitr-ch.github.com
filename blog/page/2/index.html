@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Algebrick - Pitr.ch</title>
+  <title>Blog - Pitr.ch</title>
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Algebrick It&#39;s a small gem providing algebraic types and pattern matching on them for Ruby. Documentation: http://blog.pitr.ch/algebrick Source &hellip;">
+  <meta name="description" content="I&#39;ve just released a new gem praise (pry + raise = praise).
+A small gem for intercepting raise calls to dig up hidden and buried exceptions. ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pitr.ch/gems/algebrick">
+  <link rel="canonical" href="http://blog.pitr.ch/blog/page/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pitr.ch" type="application/atom+xml">
@@ -82,91 +83,66 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
-    <h1 class="entry-title">Algebrick</h1>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - Pry Session for Every Exception</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-14T15:09:00+02:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/14/praise-pry-session-for-every-exception/#disqus_thread">Comments</a>
+        
+
+        
+        
+          | <span class="categories">in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/praise/'>praise</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
+        
+      </p>
     
   </header>
+
+
+  <div class="entry-content"><p>I&#39;ve just released a new gem <strong>praise</strong> (pry + raise = praise).
+A small gem for intercepting <code>raise</code> calls to dig up hidden and buried exceptions.</p>
+
+</div>
   
-  <p><a href="https://travis-ci.org/pitr-ch/algebrick"><img src="https://travis-ci.org/pitr-ch/algebrick.png?branch=master" alt="Build Status"></a></p>
-
-<p>It&#39;s a small gem providing <strong>algebraic types</strong> and <strong>pattern matching</strong> on them for Ruby.</p>
-
-<ul>
-<li>  Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
-<li>  Source: <a href="https://github.com/pitr-ch/algebrick">https://github.com/pitr-ch/algebrick</a></li>
-<li>  Blog: <a href="http://blog.pitr.ch/blog/categories/algebrick/">http://blog.pitr.ch/blog/categories/algebrick/</a></li>
-</ul>
-
-<h2>What is it good for?</h2>
-
-<ul>
-<li>  Defining data structures.</li>
-<li>  Algebraic types play nice with JSON serialization and deserialization. It is ideal for defining message-based cross-process communication.</li>
-<li>  and more&#8230;</li>
-</ul>
-
-<h2>Quick example</h2>
-
-<p>Let&#39;s define a Tree</p>
-<div class="highlight"><pre><code class="ruby"><span class="no">Tree</span> <span class="o">=</span> <span class="no">Algebrick</span><span class="o">.</span><span class="n">type</span> <span class="k">do</span> <span class="o">|</span><span class="n">tree</span><span class="o">|</span>
-  <span class="no">Empty</span> <span class="o">=</span> <span class="n">type</span>
-  <span class="no">Leaf</span>  <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="nb">Integer</span> <span class="p">}</span>
-  <span class="no">Node</span>  <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="n">tree</span><span class="p">,</span> <span class="n">tree</span> <span class="p">}</span>
-
-  <span class="n">variants</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Leaf</span><span class="p">,</span> <span class="no">Node</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Now types <code>Tree(Empty | Leaf | Node)</code>, <code>Empty</code>, <code>Leaf(Integer)</code> and <code>Node(Tree, Tree)</code> are defined.
-Add some methods, don&#39;t miss the <strong>pattern matching</strong> example.</p>
-<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Tree</span>
-  <span class="c1"># compute depth of a tree</span>
-  <span class="k">def</span> <span class="nf">depth</span>
-    <span class="n">match</span> <span class="nb">self</span><span class="p">,</span>
-          <span class="no">Empty</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">,</span>
-          <span class="no">Leaf</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span>
-          <span class="c1"># ~ will store and pass matched parts to variables left and right</span>
-          <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">&gt;-&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="k">do</span>
-            <span class="mi">1</span> <span class="o">+</span> <span class="o">[</span><span class="n">left</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">depth</span><span class="o">].</span><span class="n">max</span>
-          <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
-<p>Methods are defined on <strong>all</strong> values of type Tree</p>
-<div class="highlight"><pre><code class="ruby"><span class="no">Empty</span><span class="o">.</span><span class="n">depth</span>                                        <span class="c1"># =&gt; 0</span>
-<span class="no">Leaf</span><span class="o">[</span><span class="mi">10</span><span class="o">].</span><span class="n">depth</span>                                     <span class="c1"># =&gt; 1</span>
-<span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">depth</span>                         <span class="c1"># =&gt; 2</span>
-<span class="no">Node</span><span class="o">[</span><span class="no">Empty</span><span class="p">,</span> <span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">]].</span><span class="n">depth</span>            <span class="c1"># =&gt; 3</span>
-</code></pre></div>
   
     <footer>
-      
-      
-        <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/gems/algebrick/index.html" data-via="" data-counturl="http://blog.pitr.ch/gems/algebrick/index.html" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-</div>
-
-      
+      <a rel="full-article" href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Read on &rarr;</a>
     </footer>
   
-</article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
 </div>
-  </section>
-
-</div>
-
 <aside class="sidebar">
   
     <section>
@@ -207,7 +183,6 @@ Add some methods, don&#39;t miss the <strong>pattern matching</strong> example.<
   
 </aside>
 
-
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -223,10 +198,7 @@ Add some methods, don&#39;t miss the <strong>pattern matching</strong> example.<
       var disqus_shortname = 'pitr-ch';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pitr.ch/gems/algebrick/index.html';
-        var disqus_url = 'http://blog.pitr.ch/gems/algebrick/index.html';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

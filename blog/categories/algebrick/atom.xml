@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algebrick | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/algebrick/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-06-14T10:49:58+02:00</updated>
+  <updated>2013-09-17T20:08:48+02:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - Bumping to v0.2 with new better type-defining-DSL]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/"/>
+    <updated>2013-09-16T22:03:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl</id>
+    <content type="html"><![CDATA[<p>Finely I&#39;ve got an idea how to improve the old-not-so-good-DSL for Algebraic type definition.</p>
+
+<!-- more -->
+
+<p>With old DSL you would define Tree type as follows.</p>
+<div class="highlight"><pre><code class="ruby"><span class="kp">include</span> <span class="ss">Algebrick</span><span class="p">:</span><span class="ss">:DSL</span>
+<span class="n">type_def</span> <span class="k">do</span>
+  <span class="n">tree</span> <span class="o">===</span> <span class="n">tip</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Although this looks quite nice and it&#39;s concise, it magically defines constants <code>Tree</code>, <code>Tip</code> and <code>Node</code>. Later when you come back to the code it&#39;s hard to  find where the constants are being defined. There is no <code>Tree = #something</code> in the source code. IDEs like RubyMine won&#39;t find the definition either.</p>
+
+<p>I&#39;ve tried to improve the situation with manually setting the constants (this was never released).</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Tree</span><span class="p">,</span> <span class="no">Tip</span><span class="p">,</span> <span class="no">Node</span> <span class="o">=</span> <span class="n">type_def</span> <span class="k">do</span>
+  <span class="n">tree</span> <span class="o">===</span> <span class="n">tip</span> <span class="o">|</span> <span class="n">node</span><span class="p">(</span><span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>But this has several other flows:</p>
+
+<ol>
+<li> If order of <code>tip</code> and <code>node</code> is changed in the definition, newly created types will end up in wrong constants since they are being returned by <code>#type_def</code> in order of first mention.</li>
+<li> When more types are being defined in <code>#type_def</code>&#39;s block it will get messy very soon.</li>
+</ol>
+
+<p>Then I&#39;ve finally realized that because <code>#instance_eval</code> and <code>#instance_exec</code> does not change the <code>Module.nesting</code> of the blocks, the block can be evaluated inside a scope with DSL methods keeping the constants defined in original place. This behavior allows the following definition of Algebraic types.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Tree</span> <span class="o">=</span> <span class="no">Algebrick</span><span class="o">.</span><span class="n">type</span> <span class="k">do</span> <span class="o">|</span><span class="n">tree</span><span class="o">|</span>
+  <span class="no">Tip</span>  <span class="o">=</span> <span class="n">type</span>
+  <span class="no">Node</span> <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span> <span class="p">}</span>
+
+  <span class="n">variants</span> <span class="no">Tip</span><span class="p">,</span> <span class="no">Node</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>It&#39;s been released in version 0.2.0.</p>
+
+<h2>Version 0.2.2</h2>
+
+<p>Version 0.2.1 just fixes release date of the gem. Version 0.2.2 adds minor improvement to the DSL. Field readers on products can be defined in DSL with methods <code>#readers *names</code> or <code>#all_readers</code> for all of them.</p>
+<div class="highlight"><pre><code class="ruby"><span class="no">Node</span> <span class="o">=</span> <span class="n">type</span> <span class="k">do</span>
+  <span class="n">fields</span> <span class="ss">value</span><span class="p">:</span> <span class="no">Object</span><span class="p">,</span> <span class="ss">left</span><span class="p">:</span> <span class="n">tree</span><span class="p">,</span> <span class="ss">right</span><span class="p">:</span> <span class="n">tree</span>
+  <span class="n">all_readers</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>I hope you like the new DSL. </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Algebrick - bump to version 0.1.2]]></title>
