@@ -112,11 +112,9 @@
 
 <p>Let&#39;s define a Tree</p>
 <div class="highlight"><pre><code class="ruby"><span class="no">Tree</span> <span class="o">=</span> <span class="no">Algebrick</span><span class="o">.</span><span class="n">type</span> <span class="k">do</span> <span class="o">|</span><span class="n">tree</span><span class="o">|</span>
-  <span class="no">Empty</span> <span class="o">=</span> <span class="n">type</span>
-  <span class="no">Leaf</span>  <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="nb">Integer</span> <span class="p">}</span>
-  <span class="no">Node</span>  <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="n">tree</span><span class="p">,</span> <span class="n">tree</span> <span class="p">}</span>
-
-  <span class="n">variants</span> <span class="no">Empty</span><span class="p">,</span> <span class="no">Leaf</span><span class="p">,</span> <span class="no">Node</span>
+  <span class="n">variants</span> <span class="no">Empty</span> <span class="o">=</span> <span class="n">atom</span><span class="p">,</span>
+           <span class="no">Leaf</span>  <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="nb">Integer</span> <span class="p">},</span>
+           <span class="no">Node</span>  <span class="o">=</span> <span class="n">type</span> <span class="p">{</span> <span class="n">fields</span> <span class="n">tree</span><span class="p">,</span> <span class="n">tree</span> <span class="p">}</span>
 <span class="k">end</span>
 </code></pre></div>
 <p>Now types <code>Tree(Empty | Leaf | Node)</code>, <code>Empty</code>, <code>Leaf(Integer)</code> and <code>Node(Tree, Tree)</code> are defined.

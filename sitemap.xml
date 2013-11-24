@@ -2,94 +2,94 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/</loc>
-        <lastmod>2013-06-03T19:32:54+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/
         </loc>
-        <lastmod>2013-06-03T19:37:08+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/</loc>
-        <lastmod>2013-06-14T10:49:20+02:00</lastmod>
+        <lastmod>2013-11-16T18:45:36+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/
         </loc>
-        <lastmod>2013-06-03T19:32:43+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/</loc>
-        <lastmod>2013-06-03T19:32:38+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/</loc>
-        <lastmod>2013-06-03T19:32:25+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/</loc>
-        <lastmod>2013-06-03T19:32:07+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/</loc>
-        <lastmod>2013-06-03T19:32:16+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes/</loc>
-        <lastmod>2013-09-16T22:05:08+02:00</lastmod>
+        <lastmod>2013-11-24T19:36:51+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/
         </loc>
-        <lastmod>2013-06-03T20:44:12+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/
         </loc>
-        <lastmod>2013-09-17T20:07:02+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/404.html</loc>
-        <lastmod>2013-05-17T15:32:21+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/about-me/</loc>
-        <lastmod>2013-06-08T09:17:56+02:00</lastmod>
+        <lastmod>2013-11-23T18:06:45+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/archives/</loc>
-        <lastmod>2013-09-17T20:07:02+02:00</lastmod>
+        <lastmod>2013-11-24T19:36:51+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/algebrick/</loc>
-        <lastmod>2013-06-01T15:19:06+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/htmless/</loc>
-        <lastmod>2013-06-01T16:42:33+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/</loc>
-        <lastmod>2013-06-01T16:19:08+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/justified/</loc>
-        <lastmod>2013-06-01T15:44:22+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/praise/</loc>
-        <lastmod>2013-06-01T15:47:29+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/</loc>
-        <lastmod>2013-09-17T20:07:02+02:00</lastmod>
+        <lastmod>2013-11-24T19:36:51+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/robots.txt</loc>
-        <lastmod>2013-05-12T11:56:39+02:00</lastmod>
+        <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
 </urlset>

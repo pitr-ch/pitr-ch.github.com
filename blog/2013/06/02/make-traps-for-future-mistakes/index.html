@@ -164,8 +164,10 @@ an upgrade to 3.2 is planned at some point. An error should be thrown when Rails
 
 <h2>Caution</h2>
 
-<p>Checks like these should be done in class or module scope to be evaluated only once when loading. 
-They should not be placed inside methods.</p>
+<ul>
+<li>  Checks like these should be done in class or module scope to be evaluated only once when loading. They should not be placed inside methods.</li>
+<li>  <em>Update:</em> To avoid publishing faulty gem there should be a CI (e.g. Travis) set up so it will let you know that there is a problem when you bump the version and forget to run tests again. </li>
+</ul>
 </div>
 
 
