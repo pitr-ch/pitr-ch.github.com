@@ -53,16 +53,20 @@
         <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
+        <loc>http://blog.pitr.ch/blog/2013/11/27/how-to-debug-deadlocks-or-fatal-errors/</loc>
+        <lastmod>2013-11-27T21:49:05+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://blog.pitr.ch/404.html</loc>
         <lastmod>2013-11-16T18:42:03+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/about-me/</loc>
-        <lastmod>2013-11-23T18:06:45+01:00</lastmod>
+        <lastmod>2013-11-27T21:49:16+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/blog/archives/</loc>
-        <lastmod>2013-11-24T19:36:51+01:00</lastmod>
+        <lastmod>2013-11-27T21:49:05+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/gems/algebrick/</loc>
@@ -86,7 +90,7 @@
     </url>
     <url>
         <loc>http://blog.pitr.ch/</loc>
-        <lastmod>2013-11-24T19:36:51+01:00</lastmod>
+        <lastmod>2013-11-27T21:49:05+01:00</lastmod>
     </url>
     <url>
         <loc>http://blog.pitr.ch/robots.txt</loc>

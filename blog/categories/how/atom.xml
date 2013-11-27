@@ -4,7 +4,7 @@
   <title><![CDATA[Category: how | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/how/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-11-24T19:36:52+01:00</updated>
+  <updated>2013-11-27T21:49:20+01:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to debug deadlocks or fatal errors]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/11/27/how-to-debug-deadlocks-or-fatal-errors/"/>
+    <updated>2013-11-27T21:14:00+01:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/11/27/how-to-debug-deadlocks-or-fatal-errors</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+<p>Few weeks back I was working on parallel execution in gem called <a href="https://github.com/iNecas/dynflow">Dynflow</a> and I ran into a deadlock. As you may know deadlock is an exception of class <code>fatal</code>. This special exception is not rescuable in fact none of the rescue blocks is evaluated when <code>fatal</code> is risen. This makes its debugging pretty hard. </p>
+
+<p>Lets have a simple example generating deadlock.</p>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;thread&#39;</span>
+<span class="c1"># cannot join on current main thread, it would wait forever</span>
+<span class="no">Thread</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">join</span>
+</code></pre></div>
+<p>produces</p>
+<div class="highlight"><pre><code class="text">./fatal.rb:3:in `join&#39;: deadlock detected (fatal)
+    from ./fatal.rb:3:in `&lt;top (required)&gt;&#39;
+    from -e:1:in `load&#39;
+    from -e:1:in `&lt;main&gt;&#39;
+</code></pre></div>
+<p>Unfortunately event though rescue blocks are not evaluated ensure blocks are. I am using RubyMine and for some reason standard debugger breakpoint does not work in ensure block on line 6 at following example.</p>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;thread&#39;</span>
+
+<span class="k">begin</span>
+  <span class="no">Thread</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">join</span>
+<span class="k">ensure</span>
+  <span class="nb">p</span> <span class="vg">$!</span> <span class="k">if</span> <span class="vg">$!</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Produces following output without stopping on line 6.</p>
+<div class="highlight"><pre><code class="text">#&lt;fatal: deadlock detected&gt;
+./fatal.rb:4:in `join&#39;: deadlock detected (fatal)
+    from ./fatal.rb:4:in `&lt;top (required)&gt;&#39;
+    from -e:1:in `load&#39;
+    from -e:1:in `&lt;main&gt;&#39;
+</code></pre></div>
+<p>I could not google any solution but there is a nice trick. You can use <a href="http://pryrepl.org/">Pry</a> in ensure block.</p>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;thread&#39;</span>
+
+<span class="k">begin</span>
+  <span class="no">Thread</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">join</span>
+<span class="k">ensure</span>
+  <span class="nb">binding</span><span class="o">.</span><span class="n">pry</span> <span class="k">if</span> <span class="vg">$!</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>It will start pry session right after deadlock was risen giving you an opportunity to inspect still running Ruby process to find out what is wrong. It&#39;s also very useful to combine <code>pry</code> with gem called <a href="https://github.com/pry/pry-stack_explorer">pry-stack_explorer</a> to able to inspect current stack like in debugger.</p>
+
+<p>In the end it gave me enough information to find the problem.</p>
+
+<p><em>Note: This examples are in Ruby 1.9.3. In Ruby 2.0.0 <code>Thread.current.join</code> raises nice <code>ThreadError</code> which is subclass of <code>StandardError</code> which can be debugged/inspected using usual means. Nevertheless similar deadlock like problem can rise in different situations in Ruby 2.0.0 too.</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to get object reference from inspection-string]]></title>
