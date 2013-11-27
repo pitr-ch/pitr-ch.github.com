@@ -4,7 +4,7 @@
   <title><![CDATA[Category: how | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/how/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-11-27T21:54:18+01:00</updated>
+  <updated>2013-11-27T22:11:47+01:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -60,7 +60,7 @@
 </code></pre></div>
 <p>It will start pry session right after deadlock was risen giving an opportunity to inspect still running Ruby process to find out what is wrong. It&#39;s also very useful to combine <code>pry</code> with gem called <a href="https://github.com/pry/pry-stack_explorer">pry-stack_explorer</a> to able to inspect current stack like in debugger.</p>
 
-<p>In the end it gave me enough information to find the problem.</p>
+<p>In the end it gave me enough information to find the problem. Hopefully it will save you some time if you run into similar issue.</p>
 
 <p><em>Note: This examples are in Ruby 1.9.3. In Ruby 2.0.0 <code>Thread.current.join</code> raises nice <code>ThreadError</code> which is subclass of <code>StandardError</code> which can be debugged/inspected using usual means. Nevertheless similar deadlock like problem can rise in different situations in Ruby 2.0.0 too.</em></p>
 ]]></content>
