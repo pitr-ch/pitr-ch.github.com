@@ -4,7 +4,7 @@
   <title><![CDATA[Category: how | Pitr.ch]]></title>
   <link href="http://blog.pitr.ch/blog/categories/how/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2013-11-27T21:49:20+01:00</updated>
+  <updated>2013-11-27T21:54:18+01:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -49,7 +49,7 @@
     from -e:1:in `load&#39;
     from -e:1:in `&lt;main&gt;&#39;
 </code></pre></div>
-<p>I could not google any solution but there is a nice trick. You can use <a href="http://pryrepl.org/">Pry</a> in ensure block.</p>
+<p>I could not google any solution but there is a nice trick. <a href="http://pryrepl.org/">Pry</a> can be used in ensure block.</p>
 <div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;thread&#39;</span>
 
 <span class="k">begin</span>
@@ -58,7 +58,7 @@
   <span class="nb">binding</span><span class="o">.</span><span class="n">pry</span> <span class="k">if</span> <span class="vg">$!</span>
 <span class="k">end</span>
 </code></pre></div>
-<p>It will start pry session right after deadlock was risen giving you an opportunity to inspect still running Ruby process to find out what is wrong. It&#39;s also very useful to combine <code>pry</code> with gem called <a href="https://github.com/pry/pry-stack_explorer">pry-stack_explorer</a> to able to inspect current stack like in debugger.</p>
+<p>It will start pry session right after deadlock was risen giving an opportunity to inspect still running Ruby process to find out what is wrong. It&#39;s also very useful to combine <code>pry</code> with gem called <a href="https://github.com/pry/pry-stack_explorer">pry-stack_explorer</a> to able to inspect current stack like in debugger.</p>
 
 <p>In the end it gave me enough information to find the problem.</p>
 
