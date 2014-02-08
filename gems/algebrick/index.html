@@ -9,7 +9,7 @@
   <meta name="author" content="Petr Chalupa">
 
   
-  <meta name="description" content="Algebrick It&#39;s a small gem providing algebraic types and pattern matching on them for Ruby. Documentation: http://blog.pitr.ch/algebrick Source &hellip;">
+  <meta name="description" content="Algebrick It&#39;s a gem providing algebraic types and pattern matching seamlessly integrates with standard features Ruby. Documentation: http:// &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,7 +92,7 @@
   
   <p><a href="https://travis-ci.org/pitr-ch/algebrick"><img src="https://travis-ci.org/pitr-ch/algebrick.png?branch=master" alt="Build Status"></a></p>
 
-<p>It&#39;s a small gem providing <strong>algebraic types</strong> and <strong>pattern matching</strong> on them for Ruby.</p>
+<p>It&#39;s a gem providing <strong>algebraic types</strong> and <strong>pattern matching</strong> seamlessly integrates with standard features Ruby.</p>
 
 <ul>
 <li>  Documentation: <a href="http://blog.pitr.ch/algebrick">http://blog.pitr.ch/algebrick</a></li>
@@ -118,21 +118,21 @@
 <span class="k">end</span>
 </code></pre></div>
 <p>Now types <code>Tree(Empty | Leaf | Node)</code>, <code>Empty</code>, <code>Leaf(Integer)</code> and <code>Node(Tree, Tree)</code> are defined.
-Add some methods, don&#39;t miss the <strong>pattern matching</strong> example.</p>
+Let&#39;s add a method, don&#39;t miss the <strong>pattern matching</strong> example.</p>
 <div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">Tree</span>
   <span class="c1"># compute depth of a tree</span>
   <span class="k">def</span> <span class="nf">depth</span>
     <span class="n">match</span> <span class="nb">self</span><span class="p">,</span>
-          <span class="no">Empty</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">,</span>
-          <span class="no">Leaf</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="p">(</span><span class="n">on</span> <span class="no">Empty</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+          <span class="p">(</span><span class="n">on</span> <span class="no">Leaf</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
           <span class="c1"># ~ will store and pass matched parts to variables left and right</span>
-          <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="o">&gt;-&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="k">do</span>
+          <span class="p">(</span><span class="n">on</span> <span class="no">Node</span><span class="o">.</span><span class="p">(</span><span class="o">~</span><span class="n">any</span><span class="p">,</span> <span class="o">~</span><span class="n">any</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">|</span>
             <span class="mi">1</span> <span class="o">+</span> <span class="o">[</span><span class="n">left</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">depth</span><span class="o">].</span><span class="n">max</span>
-          <span class="k">end</span>
+          <span class="k">end</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div>
-<p>Methods are defined on <strong>all</strong> values of type Tree</p>
+<p>Method defined in module <code>Tree</code> are passed down to <strong>all</strong> values of type Tree</p>
 <div class="highlight"><pre><code class="ruby"><span class="no">Empty</span><span class="o">.</span><span class="n">depth</span>                                        <span class="c1"># =&gt; 0</span>
 <span class="no">Leaf</span><span class="o">[</span><span class="mi">10</span><span class="o">].</span><span class="n">depth</span>                                     <span class="c1"># =&gt; 1</span>
 <span class="no">Node</span><span class="o">[</span><span class="no">Leaf</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">,</span> <span class="no">Empty</span><span class="o">].</span><span class="n">depth</span>                         <span class="c1"># =&gt; 2</span>
@@ -209,7 +209,7 @@ Add some methods, don&#39;t miss the <strong>pattern matching</strong> example.<
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 -
+  Copyright &copy; 2014 -
   <a href="http://blog.pitr.ch">Petr Chalupa</a> -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
