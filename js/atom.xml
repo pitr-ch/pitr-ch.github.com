@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[]]></title>
+  <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
+  <link href="http://blog.pitr.ch/"/>
+  <updated>2014-08-08T22:47:47+02:00</updated>
+  <id>http://blog.pitr.ch/</id>
+  <author>
+    <name><![CDATA[Petr Chalupa]]></name>
+    
+  </author>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - Bumping to v0.2 with new better type-defining-DSL]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/"/>
+    <updated>2013-09-16T22:03:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to get object reference from inspection-string]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/"/>
+    <updated>2013-06-03T19:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Making traps for future mistakes]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes/"/>
+    <updated>2013-06-02T10:58:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Justified - add missing causes to exceptions]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/"/>
+    <updated>2013-06-01T19:52:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Praise - bump to version 0.0.3]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/"/>
+    <updated>2013-06-01T19:05:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.2]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - bump to version 0.1.1]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/"/>
+    <updated>2013-06-01T17:22:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Htmless - Fast extensible html5 builder in pure Ruby]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/"/>
+    <updated>2013-05-17T12:23:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to find pull-request by a commit sha]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/"/>
+    <updated>2013-05-15T11:00:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Algebrick - Algebraic types and pattern matching for Ruby]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/"/>
+    <updated>2013-05-14T21:19:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Praise - pry session for every exception]]></title>
+    <link href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/"/>
+    <updated>2013-05-14T15:09:00+02:00</updated>
+    <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
+  </entry>
+  
+</feed>
