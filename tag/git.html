@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>How to find pull-request by a commit sha - Pitr.ch</title>
+    <title> - Pitr.ch</title>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,75 +53,24 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="post">
+            <h2>Tag: git</h2>
 
-    <h1>How to find pull-request by a commit sha</h1>
 
-    <p class=post-meta>
-        15 May 2013
+<h3><a href="/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/">How to find pull-request by a commit sha</a></h3>
+
+<p class=post-meta>
+    15 May 2013
     <span class="pull-right">
+        <!--<a href="/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/#disqus_thread">Comments</a>-->
         Tags: <a href="/tag/git.html" rel="tag" class="label label-default">git</a> <a href="/tag/how.html" rel="tag" class="label label-default">how</a>
     </span>
-    </p>
+</p>
 
 
-    <!-- more -->
 
-<p>Lets have a commit <code>E</code> which is in some unknown pull-request.
-<code>--ancestry-path</code> option can be used to list all commits between master and <code>E</code></p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">git log --ancestry-path master ^E
-</code></pre></div>
-<p>for:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A last commit in master
-B Merge pull request #2258 ...
-|\
-C | some comiit in master
-| D onther commit in searched pull-request
-| E given commit
-</code></pre></div>
-<p>it returns:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">A last commit in master
-B Merge pull request #2258 ...
-D onther commit in searched pull-request
-</code></pre></div>
-<p>If last merge commit from the list is taken we get the merge commit for <code>E</code> with searched pull-request number.
-To do that we use options:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">git log --reverse --grep=\&quot;Merge pull request\&quot; -n 1 --ancestry-path master ^E
-</code></pre></div>
-<p>which returns only <code>B Merge pull request #2258</code> the merge commit with searched pull-request number.</p>
-
-<h2>Git Alias</h2>
-
-<p>For convenience it can be turned into git alias.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">logpr = !sh -c &#39;git log --reverse --grep=\&quot;Merge pull request\&quot; -n 1 \
-    --ancestry-path master ^$1 $@&#39; -
-</code></pre></div>
-<p>Then</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">$ git logpr 4b6d8f9 --oneline
-d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
-</code></pre></div>
-<h2>Caution</h2>
-
-<p>This works only if all pull-requests are merged directly into master. </p>
-
-
-    <div class="sharing">
-        <!-- Place this tag where you want the share button to render. -->
-        <div class="g-plus" data-action="share" data-annotation="bubble" data-height="20"></div>
-        <!-- Place this tag where you want the +1 button to render. -->
-        <div class="g-plusone" data-size="medium"></div>
-
-        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/" data-via="pitr_ch" data-counturl="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/" >Tweet</a>
-    </div>
-
-    
-    <div id="disqus_thread" aria-live="polite">
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-    
-
-
-</div>
+<p id="tag-cloud">
+    All tags: <a href="/tag/algebrick.html" class="set-2 label label-default">algebrick</a> <a href="/tag/gem.html" class="set-4 label label-default">gem</a> <a href="/tag/git.html" class="set-1 label label-default">git</a> <a href="/tag/how.html" class="set-2 label label-default">how</a> <a href="/tag/htmless.html" class="set-1 label label-default">htmless</a> <a href="/tag/justified.html" class="set-1 label label-default">justified</a> <a href="/tag/praise.html" class="set-1 label label-default">praise</a> <a href="/tag/ruby.html" class="set-5 label label-default">ruby</a> <a href="/tag/whim.html" class="set-1 label label-default">whim</a>
+</p>
 
         </div>
     </div>
@@ -153,11 +102,11 @@ d2a35bc Merge pull request #2258 from daviddavis/temp_1368456830
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'pitr-ch'; // required: replace example with your forum shortname
-    var disqus_identifier = 'http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/';
-    var disqus_url = 'http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/';
+    var disqus_identifier = 'http://blog.pitr.ch/tag/git.html';
+    var disqus_url = 'http://blog.pitr.ch/tag/git.html';
     var disqus_title = '';
 
-    if ('true' == 'true')
+    if ('true' == '')
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';
