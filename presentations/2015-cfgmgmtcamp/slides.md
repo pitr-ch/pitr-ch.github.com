@@ -22,13 +22,24 @@ class: center, inverse, middle
 -   *TODO*
 
 ---
+class: center, inverse, middle
+# Motivation
+
+---
 # Motivation
 
 -   Multi host deployment.
 -   Deploy and re-deploy your whole application infrastructure with ease.
--   To have control over the deployment process.
--   *TODO add*
+-   Have control over the deployment process (monitor progress and failures).
 
+--
+
+### Use-cases:
+
+-   Application infrastructure definition
+-   Compute resource installation
+-   Cross machine orchestration
+-   OpenStack
 
 ---
 class: center, inverse, middle
@@ -54,8 +65,12 @@ Definition of .yellow[Foreman]'s objects to be created or configured.
 -   Configuration
     -   Hostgroups
     -   Parameters
+    -   PuppetClass
     -   Overrides
     -   Hosts
+    -   SubnetTypes
+    -   ComputeResources and ComputeProfiles
+    -   ConnectParameters
 -   Ordering
     -   PuppetRuns
     -   ParameterUpdates
@@ -75,7 +90,7 @@ db_stack = stack :db do
                "<%= get_parameter('db_password') %>" # pseudo
     end
 
-    host :db, 1..1 do
+    host :db, min: 1, max: 1 do
       puppet_run >> puppet_run
     end
   end
@@ -102,7 +117,7 @@ web_server_stack = stack :web_server do
                "<%= get_parameter('db_url') %>" # pseudo
     end
 
-    host :db, 1..n do
+    host :db, min: 1 do
       puppet_run
     end
   end
@@ -177,15 +192,37 @@ class: center, inverse, middle
 # Deploying
 
 ---
-## Before
+# State before deploying
 
-All hosts are just created waiting for provisioning.
+All resources are configured for the Deployment, creating:
 
-## Deploying
+-   Hostgroups
+-   GroupParameters
+-   Hosts
+
+--
+
+All hosts 
+
+-   are created in DB waiting for `build` flag to be flipped 
+-   and to be provisioned.
+
+---
+
+# Deploying
+
+### using Dynflow
+
+-   Orchestration engine
+-   Workflow engine
+
+--
+
+### Order
 
 1.  Provision all hosts at once (no configuration)
-1.  Builds Dynflow ExecutionPlan based on dependencies of ordered resources
-1.  Dynflow executes the ExecutionPlan and deploys the Deployment
+1.  Builds Dynflow plan based on dependencies of ordered resources
+1.  Dynflow executes the plan and deploys the Deployment
     1.  puppet run on DB host
     1.  puppet runs on all web server hosts in parallel
 1.  Voilà!
@@ -194,6 +231,8 @@ All hosts are just created waiting for provisioning.
 class: center, inverse, middle
 
 # Data Model
+
+???
 
 ---
 background-image: url(images/overview_class.svg)
@@ -235,7 +274,7 @@ A .yellow[Foreman] plugin
 :---: | :---: | :---: | :---: | :---:
  1 |AuthService PuppetRun | | |
 2 | |  AuthClient PuppetRun |  AuthClient PuppetRun |  AuthClient PuppetRun
-3 | |  DataBase PuppetRun | |
+3 | CollectClients PuppetRun |  DataBase PuppetRun | |
 4 | | |  WebServer PuppetRun | WebServer PuppetRun
 
 ---
@@ -244,6 +283,11 @@ A .yellow[Foreman] plugin
 -   Networking configuration
 -   HA OpenStack controllers
 -   Services orchestration
+
+---
+# Other config management tools
+
+*TODO content? use-cases in motivation?*
 
 ???
 

@@ -4,7 +4,7 @@
   <title><![CDATA[]]></title>
   <link href="http://blog.pitr.ch/atom.xml" rel="self"/>
   <link href="http://blog.pitr.ch/"/>
-  <updated>2015-01-27T10:32:15+01:00</updated>
+  <updated>2015-01-27T15:46:32+01:00</updated>
   <id>http://blog.pitr.ch/</id>
   <author>
     <name><![CDATA[Petr Chalupa]]></name>
@@ -17,6 +17,12 @@
     <link href="http://blog.pitr.ch/blog/2013/11/27/how-to-debug-deadlocks-or-fatal-errors/"/>
     <updated>2013-11-27T21:14:00+01:00</updated>
     <id>http://blog.pitr.ch/blog/2013/11/27/how-to-debug-deadlocks-or-fatal-errors</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a> <a href="/tag/how.html" rel="tag" class="label label-default">how</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -24,6 +30,12 @@
     <link href="http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl/"/>
     <updated>2013-09-16T22:03:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/09/16/algebrick-bumping-to-v0-dot-2-with-new-better-type-defining-dsl</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/algebrick.html" rel="tag" class="label label-default">algebrick</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -31,6 +43,12 @@
     <link href="http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string/"/>
     <updated>2013-06-03T19:22:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/03/how-to-get-object-reference-from-inspection-string</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/how.html" rel="tag" class="label label-default">how</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -38,6 +56,12 @@
     <link href="http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes/"/>
     <updated>2013-06-02T10:58:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/02/make-traps-for-future-mistakes</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/whim.html" rel="tag" class="label label-default">whim</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -45,6 +69,12 @@
     <link href="http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions/"/>
     <updated>2013-06-01T19:52:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/01/justified-add-missing-causes-to-exceptions</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/justified.html" rel="tag" class="label label-default">justified</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -52,6 +82,12 @@
     <link href="http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/"/>
     <updated>2013-06-01T19:05:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/01/praise-bump-to-version-0-dot-0-3</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/praise.html" rel="tag" class="label label-default">praise</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -59,6 +95,12 @@
     <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2/"/>
     <updated>2013-06-01T17:22:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-2</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/algebrick.html" rel="tag" class="label label-default">algebrick</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -66,6 +108,12 @@
     <link href="http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1/"/>
     <updated>2013-06-01T17:22:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/06/01/algebrick-bump-to-version-0-1-1</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/algebrick.html" rel="tag" class="label label-default">algebrick</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -73,6 +121,12 @@
     <link href="http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby/"/>
     <updated>2013-05-17T12:23:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/17/htmless-fast-extensible-html5-builder-in-pure-ruby</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/htmless.html" rel="tag" class="label label-default">htmless</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -80,6 +134,12 @@
     <link href="http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha/"/>
     <updated>2013-05-15T11:00:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/15/how-to-find-pull-request-by-a-commit-sha</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/git.html" rel="tag" class="label label-default">git</a> <a href="/tag/how.html" rel="tag" class="label label-default">how</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -87,6 +147,12 @@
     <link href="http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby/"/>
     <updated>2013-05-14T21:19:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/14/algebrick-algebraic-types-and-pattern-matching-for-ruby</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/algebrick.html" rel="tag" class="label label-default">algebrick</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
   <entry>
@@ -94,6 +160,12 @@
     <link href="http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception/"/>
     <updated>2013-05-14T15:09:00+02:00</updated>
     <id>http://blog.pitr.ch/blog/2013/05/14/praise-pry-session-for-every-exception</id>
+    <!--<content type="html">-->
+      <!--&lt;!&ndash; FIXME full urls&ndash;&gt;-->
+      <!--<![CDATA[-->
+        <!--Tags: <a href="/tag/praise.html" rel="tag" class="label label-default">praise</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>-->
+      <!--]]>-->
+    <!--</content>-->
   </entry>
   
 </feed>
