@@ -1,0 +1,34 @@
+@startuml
+
+!include ../../../shared.puml
+FONT
+
+participant "Host: Lisa" as host1
+participant "Host: Bart" as host2
+participant "Host: Maggie" as host3
+
+note over host2
+**ParameterUpdate:**
+    AuthService: enabled
+**PuppetRun**
+end note
+
+host2 --> host1 :
+
+note over host1
+**ParameterUpdate:**
+    DB: enabled
+**PuppetRun**
+end note
+
+host1 --> host3 : 
+host1 --> host2 : 
+
+note over host2, host3
+**ParameterUpdate:**
+    WebServer: enabled
+**PuppetRun**
+end note
+
+
+@enduml

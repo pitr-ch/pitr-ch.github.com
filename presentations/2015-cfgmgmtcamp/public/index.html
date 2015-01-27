@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Foreman Multi-Host Deployments</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--<link href="pure.css" media="all" rel="stylesheet" type="text/css"/>-->
+    <link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="images/foreman.png" type="image/x-icon">
+</head>
+<body>
+<!--<script src="remark-latest.min.js" type="text/javascript">-->
+<script src="remark-latest.min.js"></script>
+<script type="text/javascript">
+    var slideshow = remark.create({
+        sourceUrl: 'slides.md',
+        // Set the slideshow display ratio
+        ratio: '4:3',
+        // ratio: '16:9',
+
+        // Navigation options
+        navigation: {
+            // Enable or disable navigating using scroll
+            // Default: true
+            // Alternatives: false
+            scroll: false,
+
+            // Enable or disable navigation using touch
+            // Default: true
+            // Alternatives: false
+            touch: true,
+
+            // Enable or disable navigation using click
+            // Default: false
+            // Alternatives: true
+            click: false
+        }
+    });
+    //slideshow.togglePresenterMode();
+
+
+    ligature = function (extended, node) {
+        if (!node) {
+            ligature(extended, document.body);
+        }
+        else {
+            if (node.nodeType == 3 && node.parentNode.nodeName != 'SCRIPT') {
+                node.nodeValue = node.nodeValue
+                        .replace(/ffl/g, 'ﬄ')
+                        .replace(/ffi/g, 'ﬃ')
+                        .replace(/fl/g, 'ﬂ')
+                        .replace(/fi/g, 'ﬁ')
+                        .replace(/ff/g, 'ﬀ')
+                        .replace(/ij/g, 'ĳ')
+                        .replace(/IJ/g, 'Ĳ');
+
+                if (extended) {
+                    node.nodeValue = node.nodeValue
+                            .replace(/ae/g, 'æ')
+                            .replace(/A[Ee]/g, 'Æ')
+                            .replace(/oe/g, 'œ')
+                            .replace(/O[Ee]/g, 'Œ')
+                            .replace(/ue/g, 'ᵫ')
+                            .replace(/st/g, 'ﬆ');
+                }
+            }
+            if (node.childNodes) {
+                for (var i = 0; i < node.childNodes.length; i++) {
+                    ligature(extended, node.childNodes.item(i));
+                }
+            }
+        }
+    };
+
+    var elements = document.getElementsByTagName('h1');
+    for (var i = 0; i < elements.length; i++) {
+        ligature(false, elements[i]);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+@startuml
+
+title Classes
+
+!include ../../../shared.puml
+FONT
+
+object Deployment {
+    A particular deployment of a stack.
+}
+
+object Stack {
+    Composable and sharable piece of
+    infrastructure definition.
+}
+
+object Resources {
+    A Foreman object to be configured
+    or created to form an deployed stack.
+}
+
+object ForemanObjects {
+    Any Foreman object created for a
+    Deployment. Like: Host, Hostgroup,
+    GroupParameter, etc.
+}
+
+Deployment "0..*" o-right-> "1" Stack : deploys
+Stack "0..*" --> "0..*" Stack : has children
+note on link: acyclic graph
+
+Stack "1" *--> "1..*" Resources : is composed of
+
+object DeployedForemanObjects {
+    Association entities. Represents
+    ForemanObjects deployed in given
+    Deployment fulfilling given
+    Resource.
+}
+
+DeployedForemanObjects "0..*" *-up-> "1" Resources
+DeployedForemanObjects "0..*" *-up-> "1" Deployment
+DeployedForemanObjects "0..*" *--> "1" ForemanObjects
+
+
+@enduml
