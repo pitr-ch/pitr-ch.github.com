@@ -195,10 +195,6 @@ class: center, inverse, middle
 
 # Data Model
 
-???
-
-*Joke: so now we can go over whole data model ??*
-
 ---
 background-image: url(images/overview_class.svg)
 
