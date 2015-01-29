@@ -54,7 +54,7 @@ closure:
 -   Concurrency is hard.
 
 --
-### Problems
+### Trouble
 
 -   `fork`ing ⟹ memory consuming, incompatible with JRuby.
 -   Only stdlib tools are hard to use. 
@@ -239,7 +239,7 @@ class: center, inverse, middle
 
 --
 
-### .purple[**`@glitches`**]:
+### .purple[**`@glitches`**]
 
 -   Compilation tools may not be available
 -   Compilation may fail
@@ -256,12 +256,16 @@ class: center, inverse, middle
 
 Companion gem `concurrent-ruby-ext` since v0.8.
 
--   Adds precompiled C extensions.
+-   Adds precompiled C extensions
 -   or they are compiled on installation.
 -   It is never a dependency of a gem.
--   Just `gem 'concurrent-ruby-ext'` in `Gemfile`.
-    -   Same versioning.
+-   Always same version numbers.
+-   Just put following in `Gemfile`.
 
+    ```ruby
+    gem 'concurrent-ruby-ext', platform: :mri
+    ```
+    
 ???
 
 -   java is fine => precompiled on `concurrent-ruby`, just win32
@@ -277,7 +281,7 @@ Companion gem `concurrent-ruby-ext` since v0.8.
 How to test `ThreadLocalVar` using weak references?
 
 -   **CRuby** - builtin support `GC.start`
--   **Rubinius** - `GC.start` may be ignored, use `GC.run(true)`
+-   **Rubinius** - `GC.start` may be ignored, `GC.run(true)` should work
 -   **JRuby** - not supported
     -   maybe function `ForceGarbageCollection` in JVMTI through JNI
 
@@ -287,6 +291,9 @@ How to test `ThreadLocalVar` using weak references?
 -   .
 -   JVMTI = tool interface
     -   may not be supported by all GC 
+    
+-   **Does not make sense in production but it's important for testing.**
+    
 source: http://sleeplessinslc.blogspot.cz/2008/12/jvmti-jni-absolute-power.html
 
 ---
@@ -362,8 +369,8 @@ Building common synchronization primitives: <br/>
     -   CRuby inject `Monitor` into an object's ivar `__@mutex__`
     
 -   .
-    -   Ff you forget to unlock other threads will wait forever for this lock.
-    -   synchronized ×2 faster then locking
+    -   If you forget to unlock other threads will wait forever for this lock.
+    -   synchronized ×2 faster then locking on JRuby
     -   Maybe somebody can tell how bad idea it is?
 
 ---
@@ -374,7 +381,7 @@ Building common synchronization primitives: <br/>
 
 Both **JRuby** and **Rubinius** 
 
--   `local_variable`, `@ivar` access not synchronized.
+-   `local_variable`, `@ivar` access is not synchronized.
 -   Method calls are not synchronized.
 
 --
@@ -446,7 +453,7 @@ class Immutable
     @val = val
     freeze
     Rubinius.memory_barrier     if defined? Rubinius
-    UnsafeHolder::U.store_fence if defined? UnsafeHolder 
+    UnsafeHolder::U.store_fence if defined? UnsafeHolder # Java 8 only
   end
 end
 ```
@@ -466,16 +473,17 @@ class: inverse, center, middle
 ---
 class: inverse, center, middle
 
-# .red[Synchronize] everywhere.
+# .red[Synchronize] everywhere!
 
 ---
-# Improvements
+# Improvement ideas
 
 -   Memory model (or a wiki).
--   More
+-   Providing more than stdlib compliance
     -   Immutable objects.
         -   Document the barriers, 
         -   or a `Immutable` module.
+    -   Access to `wait`, `notify`, `notifyAll`
     -   Volatile fields.
         -   Common semantics e.g. `attr_volatile :val2`, no-op on CRuby
 
@@ -484,9 +492,6 @@ class: inverse, center, middle
 -   to define the intended behavior,
     easier to fix the problems when the intended behavior is defined,
     is constant, class, method definition atomic
--   provide, or make it possible to implement    
-    -   final field incompatible with CRuby
-    -   as in Java not C++, explain
 
 *TODO!!!*
 
@@ -498,11 +503,7 @@ class: center, inverse, middle
 ---
 class: center, inverse, middle
 
-# Questions & Answers
-
---
-
-## Links
+# Questions & Answers & Links
 
 [concurrent-ruby.com](http://concurrent-ruby.com)
 
