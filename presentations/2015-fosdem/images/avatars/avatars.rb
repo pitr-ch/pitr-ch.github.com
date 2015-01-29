@@ -1,11 +1,19 @@
 require 'rest-client'
 require 'multi_json'
 
-data = MultiJson.load(
-    RestClient.get(
-        'https://api.github.com/repos/ruby-concurrency/concurrent-ruby/contributors'))
+data = [
+    *MultiJson.load(
+        RestClient.get(
+            'https://api.github.com/repos/ruby-concurrency/concurrent-ruby/contributors')),
+    *MultiJson.load(
+        RestClient.get(
+            'https://api.github.com/repos/ruby-concurrency/atomic/contributors')),
+    *MultiJson.load(
+        RestClient.get(
+            'https://api.github.com/repos/ruby-concurrency/thread_safe/contributors'))]
 
-avatars = data.map { |u| [u['login'] + '.jpeg', u['avatar_url']] }
+
+avatars = data.map { |u| [u['login'] + '.jpeg', u['avatar_url']] }.uniq
 
 # avatars.each do |name, url|
 #   File.write name, RestClient.get(url)
@@ -13,4 +21,4 @@ avatars = data.map { |u| [u['login'] + '.jpeg', u['avatar_url']] }
 
 puts avatars.size
 puts avatars.map { |name, _| ".avatar[![#{name}](images/avatars/#{name})]" }.join("\n")
-puts avatars.map { |n, _| n[0..-6]}.join(' ')
+puts avatars.map { |n, _| n[0..-6] }.join(' ')

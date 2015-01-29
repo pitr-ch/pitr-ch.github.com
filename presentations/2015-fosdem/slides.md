@@ -8,16 +8,17 @@ class: center, inverse, middle
 # Content
 
 -   Motivation
--   What is (not) concurrent-ruby?
--   What's there?
--   Challenges in .red[Ruby] world
--   Examples
+-   What is (not) .red[concurrent-ruby]?
+-   Tools in .red[concurrent-ruby]
+-   .red[Ruby] World Challenges
+-   Synchronization
+-   Improvements
 
 ???
 
--   *TODO*
--   design goals
--   what we have
+*TODO*
+
+-   recheck
 
 ---
 class: center, inverse, middle
@@ -34,35 +35,39 @@ class: center, inverse, middle
 
 -   Stdlib: `Thread`, `Queue`, `Mutex`, `Monitor`, `ConditionVariable`.
 -   Implementation specific:
-    -   `JRuby::Synchronized`
-    -   Java interoperation
-    -   `Rubinius::Channel`
-    -   `Rubinius.lock` etc.
+    -   `JRuby::Synchronized`, Java interoperation
+    -   `Rubinius::Channel`, `Rubinius.lock` etc.
 
 ???
 
 
--   GVL; Both allow concurrency though
+-   GIL
+    -   GVL
+    -   Both allow concurrency though
+    -   CRuby is still good for IO heavy applications though
+    -   C extensions may run native C code in parallel if they are careful not use Ruby objects only its allocated memory.
 -   All Rubies have stdlib
--   CRuby is still good for IO heavy applications though.
--   -
--   does not help dev. MRI -> depl. JRuby
+-   does not help development, MRI -> JRuby difficult
 
 closure:
 
 -   **Q:** but is it enough and is it easy to do?
 -   Concurrency is hard.
 
----
-# Problems
+--
+### Problems
 
 -   Only stdlib tools are not enough.
--   Memory consumption when forking (unavailable on JRuby).
-
+-   `fork`ing ⟹ Memory consumption and unavailable on JRuby.
 
 ???
 
-*TODO* live lock keep?
+<hr/>
+
+-   deadlocks, raise conditions, locking order
+-   Incompatible solution
+
+*TODO* live lock add?
 *TODO* more problems
 
 ---
@@ -78,25 +83,42 @@ class: center, inverse, middle
 -   Opinionated
 -   Dependent on `ActiveSupport`
 -   One man's effort
--   Implementation specific
--   *TODO*
+-   Ruby implementation dependent
+
+???
+
+-   .
+-   .
+-   let you choose best tool
+-   so far only one dependency which we maintain
+-   .
+-   easy to develop on MRI (fast startup) then switch to JRuby in production for example
+
+*TODO add more*
 
 ---
 # What is .red[concurrent-ruby]?
 
--   Gem
--   Library
--   MIT-licensed
+-   Gem in `ruby-concurrency` organization
+    -   Also `ref`, `thread_safe` 
+-   MIT-license
 -   CRuby, JRuby, and Rubinius support
 -   Toolbox
     -   Low level abstractions
     -   High level abstractions
 -   Active community
     -   over 1K Github stars
-    -   26 contributors
+    -   26+22 contributors
 
 ???
 
+*TODO* organization
+
+-   .
+-   .
+-   .
+-   Choose your Ruby implementation.
+-   To help with building more tools
 -   J: 1K people may just want to return back and read it
 
 ---
@@ -109,28 +131,47 @@ class: center, inverse, middle
 .avatar[![rkday.jpeg](images/avatars/rkday.jpeg)]
 .avatar[![obrok.jpeg](images/avatars/obrok.jpeg)]
 .avatar[![adamruzicka.jpeg](images/avatars/adamruzicka.jpeg)]
-
-.avatar[![billdueber.jpeg](images/avatars/billdueber.jpeg)]
+.avatar[![billdueber.jpeg](images/avatars/billdueber.jpeg)]<br/>
 .avatar[![lucasallan.jpeg](images/avatars/lucasallan.jpeg)]
 .avatar[![mastfish.jpeg](images/avatars/mastfish.jpeg)]
 .avatar[![rrrene.jpeg](images/avatars/rrrene.jpeg)]
 .avatar[![brainopia.jpeg](images/avatars/brainopia.jpeg)]
 .avatar[![brixen.jpeg](images/avatars/brixen.jpeg)]
 .avatar[![alexdowad.jpeg](images/avatars/alexdowad.jpeg)]
-
 .avatar[![larrylv.jpeg](images/avatars/larrylv.jpeg)]
-.avatar[![ShaneWilton.jpeg](images/avatars/ShaneWilton.jpeg)]
+.avatar[![ShaneWilton.jpeg](images/avatars/ShaneWilton.jpeg)]<br/>
 .avatar[![jrochkind.jpeg](images/avatars/jrochkind.jpeg)]
 .avatar[![alexfalkowski.jpeg](images/avatars/alexfalkowski.jpeg)]
 .avatar[![gmalkas.jpeg](images/avatars/gmalkas.jpeg)]
 .avatar[![gcapizzi.jpeg](images/avatars/gcapizzi.jpeg)]
 .avatar[![GrooveStomp.jpeg](images/avatars/GrooveStomp.jpeg)]
-
 .avatar[![jirutka.jpeg](images/avatars/jirutka.jpeg)]
 .avatar[![jamiehodge.jpeg](images/avatars/jamiehodge.jpeg)]
-.avatar[![joshk.jpeg](images/avatars/joshk.jpeg)]
+.avatar[![joshk.jpeg](images/avatars/joshk.jpeg)]<br/>
 .avatar[![sheaney.jpeg](images/avatars/sheaney.jpeg)]
 .avatar[![zph.jpeg](images/avatars/zph.jpeg)]
+.avatar[![headius.jpeg](images/avatars/headius.jpeg)]
+.avatar[![mental.jpeg](images/avatars/mental.jpeg)]
+.avatar[![orderthruchaos.jpeg](images/avatars/orderthruchaos.jpeg)]
+.avatar[![zimbatm.jpeg](images/avatars/zimbatm.jpeg)]
+.avatar[![kim.jpeg](images/avatars/kim.jpeg)]
+.avatar[![Eric-Guo.jpeg](images/avatars/Eric-Guo.jpeg)]<br/>
+.avatar[![tenderlove.jpeg](images/avatars/tenderlove.jpeg)]
+.avatar[![eric.jpeg](images/avatars/eric.jpeg)]
+.avatar[![strzibny.jpeg](images/avatars/strzibny.jpeg)]
+.avatar[![rainhead.jpeg](images/avatars/rainhead.jpeg)]
+.avatar[![havenwood.jpeg](images/avatars/havenwood.jpeg)]
+.avatar[![funny-falcon.jpeg](images/avatars/funny-falcon.jpeg)]
+.avatar[![soorajb.jpeg](images/avatars/soorajb.jpeg)]
+.avatar[![unak.jpeg](images/avatars/unak.jpeg)]<br/>
+.avatar[![thedarkone.jpeg](images/avatars/thedarkone.jpeg)]
+.avatar[![kares.jpeg](images/avatars/kares.jpeg)]
+.avatar[![sferik.jpeg](images/avatars/sferik.jpeg)]
+.avatar[![ratnikov.jpeg](images/avatars/ratnikov.jpeg)]
+.avatar[![ktdreyer.jpeg](images/avatars/ktdreyer.jpeg)]
+.avatar[![ianunruh.jpeg](images/avatars/ianunruh.jpeg)]
+.avatar[![MSch.jpeg](images/avatars/MSch.jpeg)]
+.avatar[![nate.jpeg](images/avatars/nate.jpeg)]<br/>
 
 # Thanks!
 ]
@@ -138,17 +179,19 @@ class: center, inverse, middle
 ???
 
 *TODO add names*?
-.small[jdantonio pitr-ch mighe chrisseaton rkday obrok adamruzicka billdueber
-lucasallan mastfish rrrene brainopia brixen alexdowad larrylv ShaneWilton jrochkind alexfalkowski
-gmalkas gcapizzi GrooveStomp jirutka jamiehodge joshk sheaney zph]
+.small[jdantonio pitr-ch mighe chrisseaton rkday obrok adamruzicka billdueber lucasallan mastfish rrrene
+brainopia brixen alexdowad larrylv ShaneWilton jrochkind alexfalkowski gmalkas gcapizzi GrooveStomp
+jirutka jamiehodge joshk sheaney zph headius mental orderthruchaos zimbatm kim Eric-Guo tenderlove eric
+strzibny rainhead havenwood funny-falcon soorajb unak thedarkone kares sferik ratnikov ktdreyer ianunruh
+MSch nate]
 
 ---
 class: center, inverse, middle
 
-# What's there?
+# Tools in .red[concurrent-ruby]
 
 ---
-# Low-level constructs
+# Low-level abstractions
 
 -   Atomics:
     -   AtomicInteger - Java, C
@@ -165,7 +208,7 @@ class: center, inverse, middle
 -   Delay ➤ LazyRegister
 
 ---
-# High-level abstracts
+# High-level abstractions
 
 -   Async
 -   TimerTask
@@ -218,6 +261,12 @@ class: center, inverse, middle
 -   Compilation may fail
 -   No fallback to pure Ruby implementation
 
+???
+
+-   production machines and win32 machines
+-   .
+-   .
+
 ---
 # Native extensions (2/2)
 
@@ -231,7 +280,12 @@ Companion gem `concurrent-ruby-ext` since v0.8.
 
 ???
 
-*TODO precompiled only for java and win32*
+-   java is fine => precompiled on `concurrent-ruby`, just win32
+    -   other platforms will be added later
+-   .
+-   .
+-   .
+
 
 ---
 # Forcing GC to run
@@ -240,11 +294,15 @@ How to test `ThreadLocalVar` using weak references?
 
 -   **CRuby** - builtin support `GC.start`
 -   **Rubinius** - `GC.start` may be ignored, use `GC.run(true)`
--   **JRUby** - not supported
+-   **JRuby** - not supported
     -   maybe function `ForceGarbageCollection` in JVMTI through JNI
 
 ???
 
+-   .
+-   .
+-   JVMTI = tool interface
+    -   may not be supported by all GC 
 source: http://sleeplessinslc.blogspot.cz/2008/12/jvmti-jni-absolute-power.html
 
 ---
@@ -293,7 +351,7 @@ Building common synchronization primitives: <br/>
 
 -   **CRuby**
 
-    Stdlib: `Mutex`
+    stdlib `Monitor`
 
 -   **Rubinius** 
 
@@ -312,17 +370,33 @@ Building common synchronization primitives: <br/>
     UnsafeHolder::U.monitorExit(JRuby.reference0(object))
     ```
 
+???
+
+-   .
+    -   needs to be reentrant 
+    -   CRuby inject `Mutex` into an object's ivar `__@mutex__`
+    
+-   .
+-   .
+    -   Maybe somebody can tell how bad idea it is?
+    -   if you forget to unlock other threads will wait forever for this lock.
+    
+-   *TODO UnsafeHolder::U.monitorExit(JRuby.reference0(object)) verify that it's not slower than regular synchronized*
 
 ---
 # Primitives (2/3) - Why?
 
--   Performance (JRuby ×1.5)
--   No hidden `@__mutex__` (Rubinius)
+-   Performance (JRuby ×4.0, Rubinius ×1.4 faster)
+-   No hidden `@__mutex__` (Rubinius) 
 
 Both **JRuby** and **Rubinius** 
 
 -   `local_variable`, `@ivar` access not synchronized.
 -   Method calls are not synchronized.
+
+???
+
+*TODO verify Rubinius performance* 
 
 --
 
@@ -332,25 +406,22 @@ def initialize
 end
 
 def a_method
-  # Broken, @mutex may be nil on some platforms
+  # Broken, @mutex may be nil
   @mutex.synchronize { yield }
 end  
 ```
 
 ???
 
--   do benchmarks!
+```
+Rubinius 1M                 user     system      total        real
+Synchronize::Rubinius   4.945972   8.591180  13.537152 ( 10.442984)
+Synchronize::CRuby      6.093426   7.927195  14.020621 ( 10.341888)
 
-        Rubinius 1M                 user     system      total        real
-        Synchronize::Rubinius   4.945972   8.591180  13.537152 ( 10.442984)
-        Synchronize::CRuby      6.093426   7.927195  14.020621 ( 10.341888)
-
-        JRuby 10M                  user     system      total        real
-        Synchronize::Java     11.810000   0.060000  11.870000 (  5.993000)
-        Synchronize::CRuby    16.160000   1.100000  17.260000 (  9.134000)
-
--   SynchronizedObject implementation go step by step
-    -   how to avoid creating mutex in JRuby
+JRuby 10M                  user     system      total        real
+Synchronize::Java     11.810000   0.060000  11.870000 (  5.993000)
+Synchronize::CRuby    16.160000   1.100000  17.260000 (  9.134000)
+```
 
 ---
 # Primitives (3/3)
@@ -375,13 +446,12 @@ Adding `wait(object, timeout = nil)`, `notify(object)`, `notify_all(object)`
 ???
 
 -   explain Rubinius::Channel
+-   if they ask: usage in Channels, Semaphore, etc.
 
 ---
-# Immutable objects
+# Immutable objects 
 
--   Java final field has guaranteed visibility.
--   Avoids further locks.
--   Actor messages.
+-   Final field has visibility guarantee in Java.
 
 ```java
 class AnObject {
@@ -390,9 +460,16 @@ class AnObject {
 }
 ```
 
+-   Avoids further locks.
+-   Actor messages.
+
+???
+
+-   if constructed properly.
+
 --
 
-`UnsafeHolder::U.store_fence`, `Rubinius.memory_barrier`
+Solution
 
 ```ruby
 class Immutable
@@ -400,31 +477,64 @@ class Immutable
   def initialize(val)
     @val = val
     freeze
-    Rubinius.memory_barrier
+    Rubinius.memory_barrier     if defined? Rubinius
+    UnsafeHolder::U.store_fence if defined? UnsafeHolder 
   end
 end
 ```
 
 ???
 
--   if constructed properly.
+<hr/>
+
+-   no-op on CRuby, not documented though
+-   same fence is inserted after final field initialization in Java
 
 ---
-# Improving the situation
+class: inverse, center, middle
 
--   Memory models.
--   Common semantics.
+# So what we do?
 
-```ruby
-attr_final :val1
-attr_volatile :val2
-```
+---
+class: inverse, center, middle
 
-*TODO*
+# .red[`Mutex`] everywhere
+
+---
+# Improvements
+
+-   Memory model (or a wiki).
+-   More
+    -   Tools to make immutable objects
+    -   Volatile fields
+-   With common semantics.
+    -   e.g. `attr_volatile :val2`, no-op on CRuby
+
+
+???
+
+-   to define the intended behavior,
+    easier to fix the problems when the intended behavior is defined,
+    is constant, class, method definition atomic
+-   provide, or make it possible to implement    
+    -   final field incompatible with CRuby
+    -   as in Java not C++, explain
+
+*TODO!!!*
+
+---
+class: center, inverse, middle
+
+# Thanks
+
+## Questions & Answers
+
+### http://concurrent-ruby.com
 
 ---
 class: center, inverse, middle
 # Examples
+
 
 ---
 
