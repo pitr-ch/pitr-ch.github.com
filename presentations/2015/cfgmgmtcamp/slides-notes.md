@@ -12,25 +12,28 @@ class: center, inverse, middle
 -   Motivation
 -   Stack definition
 -   Deployment creation and configuration
--   Deploying Deployment
+-   Deploying
 -   Data Model
 -   Use-cases
--   Demo
+-   Future
 
 ???
 
--   *TODO*
+-   by design shorter to make space for discussion
+
+-   *TODO recheck*
 
 ---
 class: center, inverse, middle
+
 # Motivation
 
 ---
 # Motivation
 
 -   Multi host deployment.
--   Deploy and re-deploy your whole application infrastructure with ease.
--   Have control over the deployment process (monitor progress and failures).
+-   Deploying and re-deploying of application infrastructures.
+-   Sharing early to collect feedback.
 
 --
 
@@ -40,6 +43,13 @@ class: center, inverse, middle
 -   Compute resource installation
 -   Cross machine orchestration
 -   OpenStack
+-   Mixing tools together
+
+???
+
+*TODO improve*
+
+-   Hosts's Config management solved.
 
 ---
 class: center, inverse, middle
@@ -62,19 +72,29 @@ The definition of the infrastructure.
 
 Definition of .yellow[Foreman]'s objects to be created or configured.
 
+Types:
+
 -   Configuration
-    -   Hostgroups
-    -   Parameters
-    -   PuppetClass
-    -   Overrides
-    -   Hosts
-    -   SubnetTypes
-    -   ComputeResources and ComputeProfiles
-    -   ConnectParameters
--   Ordering
-    -   PuppetRuns
-    -   ParameterUpdates
-    -   ChildStacks
+-   Ordered
+
+---
+## Configuration resources
+
+-   Hostgroups
+-   Parameters
+-   PuppetClass
+-   Overrides
+-   Hosts
+-   SubnetTypes
+-   ComputeResources and ComputeProfiles
+-   ConnectParameters
+
+---
+## Ordered resources
+
+-   PuppetRuns
+-   ParameterUpdates
+-   ChildStacks
 
 ---
 # Stack example - DB
@@ -202,30 +222,30 @@ All resources are configured for the Deployment, creating:
 
 --
 
-All hosts 
+All hosts:
 
--   are created in DB waiting for `build` flag to be flipped 
--   and to be provisioned.
+-   are just created in DB,
+-   and waiting to be provisioned.
 
 ---
 
 # Deploying
 
-### using Dynflow
+### Using Dynflow
 
 -   Orchestration engine
 -   Workflow engine
 
 --
 
-### Order
+### Dynflow execution order
 
 1.  Provision all hosts at once (no configuration)
-1.  Builds Dynflow plan based on dependencies of ordered resources
-1.  Dynflow executes the plan and deploys the Deployment
-    1.  puppet run on DB host
-    1.  puppet runs on all web server hosts in parallel
-1.  Voilà!
+1.  Deploying Deployment (based on resources dependencies)
+    1.  First Puppet run on DB host
+    1.  Second Puppet run on DB host
+    1.  Puppet runs on all web server hosts in parallel
+1.  Re-enable Puppet runs.
 
 ---
 class: center, inverse, middle
@@ -263,9 +283,8 @@ A .yellow[Foreman] plugin
 
 -   Resources are extensible!!
 
-*oVirt logo*
-
 ---
+class: nice-table
 # Cross machine orchestration
 
 `PuppetRun` and `ParameterUpdate`
@@ -283,28 +302,75 @@ A .yellow[Foreman] plugin
 -   Networking configuration
 -   HA OpenStack controllers
 -   Services orchestration
+-   Configuring Compute Resource
 
 ---
-# Other config management tools
 
-*TODO content? use-cases in motivation?*
+# Mixing
 
-???
-
--   explain open stack
-
-*OpenStack logo*
+.center[
+&nbsp; | &nbsp; | &nbsp;
+---: | :---: | :---
+OpenStack on bare metal .code[——>] | OpenStack hosts | .code[——>] Containers
+oVirt .code[——>] | OpenShift | .code[——>] Cartridges
+]
 
 ---
 class: center, inverse, middle
 
-# Little Demo
+# Future
+
+## Near .code[——>] Far
+
+---
+
+# Stack inheritance
+
+Addition to stack composing.
+
+-   Generic postgres DB
+-   Tweaked children for different apps.
+
+---
+# Other config management tools?
+
+--
+
+Chef example
+
+-   Custom resources:
+    -   `ChefAttribute`
+    -   `ChefRun`
+    -   `ChefCookbook`
+-   Create `Stack` definition using these.
+-   Combine with other config management tools.
 
 ???
 
--   Focus on extensibility
+---
+# Other extensions
 
-*TODO if applicable*
+-   Docker
+-   Kubernetes
+    -   Nodes
+    -   Pots
+-   Heat templates
+
+???
+
+---
+# Generalized process planner
+
+-   Orchestration engine **Dynflow**
+-   Resources .code[——>] Actions
+    -   Required actions
+    -   Required configuration
+-   Deployment configuration .code[——>] Action planning
+
+???
+
+-   wait for Ivan's talk
+
 ---
 class: center, inverse, middle
 
@@ -318,3 +384,6 @@ class: center, inverse, middle
 -   **Q:** Who would not use it?
 -   **Q:** What would prevent you to use it?
 -   *todo more*
+
+-   future after foreman deployments
+    -   can work from bare metal over openstack hosts to docker containers

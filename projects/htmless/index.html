@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/avatar.jpg" type="image/x-icon">
 
-    <title>praise - Pitr.ch</title>
+    <title>Htmless - Pitr.ch</title>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,36 +59,44 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>Tag: praise</h2>
+            <h1>Htmless</h1>
 
+<p><a href="https://travis-ci.org/pitr-ch/htmless"><img src="https://travis-ci.org/pitr-ch/htmless.png?branch=master" alt="Build Status"></a></p>
 
-<h3><a href="/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/">Praise - bump to version 0.0.3</a></h3>
+<p><strong>Fast</strong> and <strong>extensible</strong> HTML5 builder in pure <strong>Ruby</strong></p>
 
-<p class=post-meta>
-    01 Jun 2013
-    <span class="pull-right">
-        <!--<a href="/blog/2013/06/01/praise-bump-to-version-0-dot-0-3/#disqus_thread">Comments</a>-->
-        Tags: <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/praise.html" rel="tag" class="label label-default">praise</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>
-    </span>
-</p>
+<ul>
+<li>  Documentation: <a href="http://blog.pitr.ch/htmless">http://blog.pitr.ch/htmless</a></li>
+<li>  Source: <a href="https://github.com/pitr-ch/htmless">https://github.com/pitr-ch/htmless</a></li>
+<li>  Blog: <a href="http://blog.pitr.ch/tag/htmless.html">http://blog.pitr.ch/tag/htmless.html</a></li>
+</ul>
 
-
-<h3><a href="/blog/2013/05/14/praise-pry-session-for-every-exception/">Praise - pry session for every exception</a></h3>
-
-<p class=post-meta>
-    14 May 2013
-    <span class="pull-right">
-        <!--<a href="/blog/2013/05/14/praise-pry-session-for-every-exception/#disqus_thread">Comments</a>-->
-        Tags: <a href="/tag/praise.html" rel="tag" class="label label-default">praise</a> <a href="/tag/gem.html" rel="tag" class="label label-default">gem</a> <a href="/tag/ruby.html" rel="tag" class="label label-default">ruby</a>
-    </span>
-</p>
-
-
-
-<p id="tag-cloud">
-    All tags: <a href="/tag/algebrick.html" class="set-2 label label-default">algebrick</a> <a href="/tag/gem.html" class="set-4 label label-default">gem</a> <a href="/tag/git.html" class="set-1 label label-default">git</a> <a href="/tag/how.html" class="set-2 label label-default">how</a> <a href="/tag/htmless.html" class="set-1 label label-default">htmless</a> <a href="/tag/justified.html" class="set-1 label label-default">justified</a> <a href="/tag/praise.html" class="set-1 label label-default">praise</a> <a href="/tag/ruby.html" class="set-5 label label-default">ruby</a> <a href="/tag/whim.html" class="set-1 label label-default">whim</a>
-</p>
-
+<h2>Quick syntax example</h2>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Htmless</span><span class="o">::</span><span class="no">Formatted</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">go_in</span> <span class="k">do</span>
+  <span class="n">html5</span>
+  <span class="n">html</span> <span class="k">do</span>
+    <span class="n">head</span> <span class="p">{</span> <span class="n">title</span> <span class="s1">&#39;my_page&#39;</span> <span class="p">}</span>
+    <span class="n">body</span> <span class="k">do</span>
+      <span class="n">div</span><span class="o">.</span><span class="n">content!</span> <span class="k">do</span>
+        <span class="nb">p</span><span class="o">.</span><span class="n">centered</span> <span class="s2">&quot;my page&#39;s content&quot;</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span><span class="o">.</span><span class="n">to_html</span>
+</code></pre></div>
+<p>returns</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>my_page<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;centered&quot;</span><span class="nt">&gt;</span>my page&#39;s content<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
         </div>
     </div>
 
@@ -115,11 +123,11 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'pitr-ch'; // required: replace example with your forum shortname
-    var disqus_identifier = 'http://blog.pitr.ch/tag/praise.html';
-    var disqus_url = 'http://blog.pitr.ch/tag/praise.html';
+    var disqus_identifier = 'http://blog.pitr.ch/projects/htmless/index.html';
+    var disqus_url = 'http://blog.pitr.ch/projects/htmless/index.html';
     var disqus_title = '';
 
-    if ('true' == '')
+    if ('true' == 'true')
         (function () {
             var dsq = document.createElement('script');
             dsq.type = 'text/javascript';

@@ -12,13 +12,7 @@ class: center, inverse, middle
 -   Tools in .red[concurrent-ruby]
 -   .red[Ruby] World Challenges
 -   Synchronization
--   Improvements
-
-???
-
-*TODO*
-
--   recheck
+-   Improvement ideas
 
 ---
 class: center, inverse, middle
@@ -29,8 +23,8 @@ class: center, inverse, middle
 # Current State
 
 <table>
-  <tr><td class="align-right">CRuby has <strong>GIL</strong></td><td class="align-left">⟹ .red[✗] parallelism</td></tr>
-  <tr><td class="align-right"> JRuby and Rubinius have no .strike[**GIL**] </td><td class="align-left"> ⟹ .green[✓] parallelism </td></tr>
+  <tr><td class="align-right">CRuby has <strong>GIL</strong></td><td class="align-left">.code[——>] .red[✗] parallelism</td></tr>
+  <tr><td class="align-right"> JRuby and Rubinius have no .strike[**GIL**] </td><td class="align-left"> .code[——>] .green[✓] parallelism </td></tr>
 </table>
 
 -   Stdlib: `Thread`, `Queue`, `Mutex`, `Monitor`, `ConditionVariable`.
@@ -38,37 +32,11 @@ class: center, inverse, middle
     -   `JRuby::Synchronized`, Java interoperation
     -   `Rubinius::Channel`, `Rubinius.lock` etc.
 
-???
-
--   GIL
-    -   GVL
-    -   Both allow concurrency though
-    -   CRuby is still good for IO heavy applications though
-    -   C extensions may run native C code in parallel if they are careful not use Ruby objects only its allocated memory.
--   All Rubies have stdlib
--   does not help development, MRI -> JRuby difficult
-
-closure:
-
--   **Q:** but is it enough and is it easy to do?
--   Concurrency is hard.
-
 --
 ### Trouble
 
--   `fork`ing ⟹ memory consuming, incompatible with JRuby.
+-   `fork`ing .code[——>] memory consuming, incompatible with JRuby.
 -   Only stdlib tools are hard to use. 
-
-???
-
-<hr/>
-
--   Incompatible solution
--   .
-    -   deadlocks, raise conditions, locking order
-    -   low level C, more high-level abstractions are needed.
-
-*TODO* more problems
 
 ---
 class: center, inverse, middle
@@ -78,23 +46,12 @@ class: center, inverse, middle
 ---
 # What is not .red[concurrent-ruby]?
 
--   New ruby implementation
+-   New .red[Ruby] implementation
 -   Extension of the language itself
 -   Opinionated
--   Dependent on `ActiveSupport`
+-   `ActiveSupport` dependent
 -   One man's effort
 -   Ruby implementation dependent
-
-???
-
--   .
--   .
--   let you choose best tool
--   so far only one dependency which we maintain
--   .
--   easy to develop on MRI (fast startup) then switch to JRuby in production for example
-
-*TODO add more*
 
 ---
 # What is .red[concurrent-ruby]?
@@ -109,15 +66,6 @@ class: center, inverse, middle
 -   Active community
     -   over 1K Github stars
     -   26+22 contributors
-
-???
-
--   .
--   .
--   .
--   Choose your Ruby implementation.
--   To help with building more tools
--   J: 1K people may just want to return back and read it
 
 ---
 
@@ -174,15 +122,6 @@ class: center, inverse, middle
 # Thanks!
 ]
 
-???
-
-*TODO add names*?
-.small[jdantonio pitr-ch mighe chrisseaton rkday obrok adamruzicka billdueber lucasallan mastfish rrrene
-brainopia brixen alexdowad larrylv ShaneWilton jrochkind alexfalkowski gmalkas gcapizzi GrooveStomp
-jirutka jamiehodge joshk sheaney zph headius mental orderthruchaos zimbatm kim Eric-Guo tenderlove eric
-strzibny rainhead havenwood funny-falcon soorajb unak thedarkone kares sferik ratnikov ktdreyer ianunruh
-MSch nate]
-
 ---
 class: center, inverse, middle
 
@@ -192,35 +131,31 @@ class: center, inverse, middle
 # Low-level abstractions
 
 -   Atomics:
-    -   AtomicInteger - Java, C
-    -   AtomicBoolean - Java, C
-    -   Atomic (former `atomic` gem) - Java, C, Rubinius
+    -   AtomicInteger (Java, C) - `atomic_int.increment`
+    -   AtomicBoolean (Java, C) - `atomic_boolean.make_true`
+    -   Atomic (former `atomic` gem; Java, C, Rubinius) - `atomic_ref.compare_and_set(:a, :b)`
 -   Synchronization primitives:
-    -   CountDownLatch - Java
-    -   Event
-    -   Condition
-    -   Semaphore - Java
--   ThreadLocalVar - Java
--   IVar
--   MVar ➤ Exchanger
--   Delay ➤ LazyRegister
+    -   CountDownLatch (Java)
+    -   Event -`event.wait`
+    -   Condition - `condition.wait(mutex, 1)`
+    -   Semaphore (Java)
+-   ThreadLocalVar (Java)
+-   IVar - `ivar.set(:value)`, `ivar.fail(exception)`
+-   MVar .code[——>] Exchanger
+-   Delay .code[——>] LazyRegister
 
 ---
 # High-level abstractions
 
 -   Async
 -   TimerTask
--   Future
--   Promise
+-   Future - `Future.execute { 1 + 1 }`
+-   Promise - `Promise.execute { 1 }.then { |v| v+1 }.value`
 -   Executors - Java
 -   Channel
 -   Agent
 -   Actor
 -   TVar (STM)
-
-???
-
--   go over them quickly!
 
 ---
 class: center, inverse, middle
@@ -232,8 +167,8 @@ class: center, inverse, middle
 
 .center[
 <table>
-  <tr><td class="align-right"> Java extensions and .red[JRuby]</td><td class="align-left"> ⟹ just works</td></tr>
-  <tr><td class="align-right"> C extensions and .red[CRuby]</td><td class="align-left">⟹ .purple[**`@glitches`**]</td></tr>
+  <tr><td class="align-right"> Java extensions and .red[JRuby]</td><td class="align-left"> .code[——>] just works</td></tr>
+  <tr><td class="align-right"> C extensions and .red[CRuby]</td><td class="align-left">.code[——>] .purple[**`@glitches`**]</td></tr>
 </table>
 ]
 
@@ -245,12 +180,6 @@ class: center, inverse, middle
 -   Compilation may fail
 -   No fallback to pure Ruby implementation
 
-???
-
--   production machines and win32 machines
--   .
--   .
-
 ---
 # Native extensions (2/2)
 
@@ -258,7 +187,7 @@ Companion gem `concurrent-ruby-ext` since v0.8.
 
 -   Adds precompiled C extensions
 -   or they are compiled on installation.
--   It is never a dependency of a gem.
+-   It should never be dependency of another gem.
 -   Always same version numbers.
 -   Just put following in `Gemfile`.
 
@@ -266,15 +195,6 @@ Companion gem `concurrent-ruby-ext` since v0.8.
     gem 'concurrent-ruby-ext', platform: :mri
     ```
     
-???
-
--   java is fine => precompiled on `concurrent-ruby`, just win32
-    -   other platforms will be added later
--   .
--   .
--   .
-
-
 ---
 # Forcing GC to run
 
@@ -283,18 +203,8 @@ How to test `ThreadLocalVar` using weak references?
 -   **CRuby** - builtin support `GC.start`
 -   **Rubinius** - `GC.start` may be ignored, `GC.run(true)` should work
 -   **JRuby** - not supported
+    -   `System.gc()`
     -   maybe function `ForceGarbageCollection` in JVMTI through JNI
-
-???
-
--   .
--   .
--   JVMTI = tool interface
-    -   may not be supported by all GC 
-    
--   **Does not make sense in production but it's important for testing.**
-    
-source: http://sleeplessinslc.blogspot.cz/2008/12/jvmti-jni-absolute-power.html
 
 ---
 class: center, inverse, middle
@@ -305,37 +215,12 @@ class: center, inverse, middle
 
 ### .red[with warning]
 
-???
-
-*TODO warn before going too deep*
--   don't do it
--   if you must do it, don't share data across threads
--   if you must share data across threads, don't share mutable state
--   if you must share mutable data across threads, synchronize access to that data
-
-**Danger**
--   warn that it is not 100% sure
--   no documentations or specs from Ruby implementers, mostly source digging
--   if ever verified and released, `concurrent-ruby` will be locked against
-    verified Ruby implementations and its versions
-
-# Resources
-
--   Ruby
-    https://github.com/ruby/ruby/blob/1ea49760417b17e62a90cce3d736f777cbfd52b7/thread_pthread.c#L101-L107
-    https://github.com/ruby/ruby/blob/1ea49760417b17e62a90cce3d736f777cbfd52b7/thread_pthread.c#L203-L211
-    http://pubs.opengroup.org/onlinepubs/007908799/xsh/pthread_mutex_lock.html
--   Rubinius
-    https://github.com/rubinius/rubinius/blob/4e05ddc92b69358040f35a486d8f213dce66ce75/kernel/bootstrap/rubinius.rb#L133-L136
-    https://github.com/rubinius/rubinius/blob/96f8edaa9530297303a520c6f961ee85c8c66ebc/vm/builtin/system.cpp#L1659-L1662
-    https://github.com/rubinius/rubinius/blob/d7e914981ffab77abd4b10516f4ffe76d057de5a/vm/util/atomic.hpp#L62-L72
-
 ---
 # Primitives (1/3)
 
 
-Building common synchronization primitives: <br/>
-`lock(object)`, `unlock(object)`, `synchronize(object) {}`.
+Building common synchronization primitives:
+`Concurrent.lock(object)`, `Concurrent.unlock(object)`, `Concurrent.synchronize(object) {}`.
 
 --
 
@@ -360,23 +245,11 @@ Building common synchronization primitives: <br/>
     UnsafeHolder::U.monitorExit(JRuby.reference0(object))
     ```
 
-???
-
--   .
-
--   .
-    -   needs to be re-entrant
-    -   CRuby inject `Monitor` into an object's ivar `__@mutex__`
-    
--   .
-    -   If you forget to unlock other threads will wait forever for this lock.
-    -   synchronized ×2 faster then locking on JRuby
-    -   Maybe somebody can tell how bad idea it is?
 
 ---
 # Primitives (2/3) - Why?
 
--   Performance (JRuby ×4.0, Rubinius ×1.4 faster)
+-   Performance (JRuby 4.0×, Rubinius 1.4× faster)
 -   No hidden `@__monitor__` (Rubinius)
 
 Both **JRuby** and **Rubinius** 
@@ -400,7 +273,7 @@ end
 ---
 # Primitives (3/3)
 
-Adding `wait(object, timeout = nil)`, `notify(object)`, `notify_all(object)`
+Adding `Concurrent.wait(object, timeout = nil)`, `Concurrent.notify(object)`, `Concurrent.notify_all(object)`
 
 -   **JRuby**
 
@@ -418,11 +291,6 @@ Adding `wait(object, timeout = nil)`, `notify(object)`, `notify_all(object)`
 
     Stdlib: `ConditionVariable` or using directly `Rubinius::Channel`
 
-???
-
--   explain Rubinius::Channel
--   if they ask: usage in Channels, Semaphore, etc.
-
 ---
 # Immutable objects 
 
@@ -437,10 +305,6 @@ class AnObject {
 
 -   Avoids further locks.
 -   Actor messages.
-
-???
-
--   if constructed properly.
 
 --
 
@@ -458,13 +322,6 @@ class Immutable
 end
 ```
 
-???
-
-<hr/>
-
--   no-op on CRuby, not documented though
--   same fence is inserted after final field initialization in Java
-
 ---
 class: inverse, center, middle
 
@@ -479,21 +336,13 @@ class: inverse, center, middle
 # Improvement ideas
 
 -   Memory model (or a wiki).
--   Providing more than stdlib compliance
+-   Providing more than stdlib tools.
     -   Immutable objects.
         -   Document the barriers, 
         -   or a `Immutable` module.
-    -   Access to `wait`, `notify`, `notifyAll`
+    -   Access to `wait`, `notify`, `notifyAll`.
     -   Volatile fields.
-        -   Common semantics e.g. `attr_volatile :val2`, no-op on CRuby
-
-???
-
--   to define the intended behavior,
-    easier to fix the problems when the intended behavior is defined,
-    is constant, class, method definition atomic
-
-*TODO!!!*
+        -   Common semantics e.g. `attr_volatile :val2`, no-op on CRuby.
 
 ---
 class: center, inverse, middle
@@ -510,24 +359,3 @@ class: center, inverse, middle
 [twitter.com/pitr_ch](https://twitter.com/pitr_ch)
 
 [github.com/pitr-ch](https://github.com/pitr-ch)
-
-???
-
-*TODO*
-
--   Examples
-    -   which abstractions should I pick?
--   Glimpse of Future
-    -   Synchronization primitives
-    -   Integration (Actors, Promises)
-    -   stabilization
-    -   documentation
-    -   tests and sleeps do not work
-    -   before 1.0
--   Ruby world challenges
-    -   atomic instance variable read
-
-
-
-
-

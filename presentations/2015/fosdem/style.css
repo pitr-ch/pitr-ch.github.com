@@ -1,0 +1,126 @@
+/*@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700);*/
+/*@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);*/
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:300,400,700);*/
+/*@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400);*/
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic);
+
+body {
+    font-family: "Ubuntu", sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    /*font-family: 'Yanone Kaffeesatz';*/
+    font-weight: 400;
+}
+
+.remark-code, .remark-inline-code, .code {
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+p, li {
+    font-weight: 400;
+}
+
+li p {
+    margin: 0;
+}
+
+li, li pre {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.remark-slide-number {
+    font-size: 10px;
+}
+
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+
+.inverse h1, .inverse h2, .inverse a {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+a, a > code {
+    /*color: rgb(249, 38, 114);*/
+    color: #0055aa;
+    text-decoration: none;
+}
+
+.red {
+    color: #dc322f;
+}
+
+.green {
+    color: #859900;
+}
+
+.yellow {
+    color: #b58900;
+}
+
+.gray {
+    color: #555555;
+}
+
+.purple {
+    color: #800080;
+}
+
+.avatar img {
+    width: 80px;
+    heihgt: 80px;
+    border-radius: 3px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.small {
+    font-size: 75%;
+}
+
+ul code, pre code, p code {
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    /*color: #b58900;*/
+    /*color: #2aa198;*/
+    /*background-color: #fdf6e3;*/
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-right ~ p {
+    clear: both;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.center table {
+    margin-left: auto;
+    margin-right: auto;
+}
+

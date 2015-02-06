@@ -16,7 +16,7 @@ h1, h2, h3, h4 {
     font-weight: 400;
 }
 
-.remark-code, .remark-inline-code {
+.remark-code, .remark-inline-code, .code {
     font-family: 'Ubuntu Mono', monospace;
 }
 
@@ -43,7 +43,7 @@ li, li pre {
     text-shadow: 0 0 20px #333;
 }
 
-.inverse h1, .inverse h2 {
+.inverse h1, .inverse h2, .inverse a {
     color: #f3f3f3;
     line-height: 0.8em;
 }
@@ -55,7 +55,11 @@ a, a > code {
 }
 
 .red {
-    color: #fa0000;
+    color: #dc322f;
+}
+
+.green {
+    color: #859900;
 }
 
 .yellow {
@@ -64,6 +68,15 @@ a, a > code {
 
 .grey {
     color: #555555;
+}
+
+.purple {
+    color: #800080;
+}
+
+
+.blue {
+    color: #268bd2;
 }
 
 ul code, pre code, p code {
@@ -86,7 +99,12 @@ ul code, pre code, p code {
     clear: both;
 }
 
-table {
+.center table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nice-table table {
     /* Remove spacing between table cells (from Normalize.css) */
     border-collapse: collapse;
     border-spacing: 0;
@@ -94,15 +112,15 @@ table {
     border: 1px solid #cbcbcb;
 }
 
-table caption {
+.nice-table table caption {
     color: #000;
     font: italic 85%/1 arial, sans-serif;
     padding: 1em 0;
     text-align: center;
 }
 
-table td,
-table th {
+.nice-table table td,
+.nice-table table th {
     border-left: 1px solid #cbcbcb;/*  inner column border */
     border-width: 0 0 0 1px;
     font-size: inherit;
@@ -110,12 +128,12 @@ table th {
     overflow: visible; /*to make ths where the title is really long work*/
     padding: 0.5em 1em; /* cell padding */
 }
-table td:first-child,
-table th:first-child {
+.nice-table table td:first-child,
+.nice-table table th:first-child {
     border-left-width: 0;
 }
 
-table thead {
+.nice-table table thead {
     background: #e0e0e0;
     color: #000;
     text-align: left;
